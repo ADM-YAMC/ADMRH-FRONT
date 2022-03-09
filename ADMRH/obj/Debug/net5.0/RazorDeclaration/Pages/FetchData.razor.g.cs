@@ -82,6 +82,34 @@ using ADMRH.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+using ADMRH.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+using Radzen;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+using ADMRH_API.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+using Radzen.Blazor;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/fetchdata")]
     public partial class FetchData : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -93,11 +121,13 @@ using ADMRH.Shared;
 #nullable restore
 #line 37 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\Pages\FetchData.razor"
        
+    private readonly HttpClient httpClient;
     private WeatherForecast[] forecasts;
-
+    public Archivo archivo;
     protected override async Task OnInitializedAsync()
     {
         forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+       
     }
 
     public class WeatherForecast

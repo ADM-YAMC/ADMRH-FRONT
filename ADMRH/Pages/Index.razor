@@ -1,7 +1,53 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+<h1 class="mt-5">Bienvenido</h1>
+<div class="row">
+    <div class="col">
+        <RadzenCard>
+            <h1>34</h1>
+            <label>Usuarios existentes</label>
+        </RadzenCard>
+    </div>
+    <div class="col">
+        <RadzenCard>
+            <h1>34</h1>
+            <label>Usuarios existentes</label>
+        </RadzenCard>
+    </div>
+    <div class="col">
+        <RadzenCard>
+            <h1>34</h1>
+            <label>Usuarios existentes</label>
+        </RadzenCard>
+    </div>
+</div>
 
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+<div class="col pl-0 ml-0 pr-0 mr-0 mt-5">
+    @if (usuarios != null)
+    {
+    <RadzenCard>
+        <div class="row">
+            <div class="col-sm-10">
+                <h2>Usuarios</h2>
+            </div>
+            @*<div class="col mb-4">
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-success w-100">Editar</button>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-danger w-100">Eliminar</button>
+                    </div>
+                </div>
+            </div>*@
+        </div>
+        <ADMRH.Pages.Usuarios.Usuarios_table />
+    </RadzenCard>
+    }
+    else
+    {
+        <h4>
+            Cargando...
+        </h4>
+    }
+</div>

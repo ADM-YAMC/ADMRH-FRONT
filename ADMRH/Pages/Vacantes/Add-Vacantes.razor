@@ -1,0 +1,57 @@
+﻿
+@page "/vacantes/nueva-vacante"
+
+<div class="container-lg mt-5">
+    <RadzenCard>
+        <h1>Registro de vacantes</h1>
+        <EditForm Model="vacante">
+            <DataAnnotationsValidator />
+            <div class="row border-top">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <InputText class="form-control" @bind-Value="vacante.Nombre" />
+                        <ValidationMessage For=@(() => vacante.Nombre) />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Departamento</label>
+                        <InputText class="form-control" @bind-Value="vacante.Departamento" />
+                        <ValidationMessage For=@(() => vacante.Departamento) />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Cargo</label>
+                        <InputText class="form-control" @bind-Value="vacante.Cargo" />
+                        <ValidationMessage For=@(() => vacante.Cargo) />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Salario</label>
+                        <InputText class="form-control" @bind-Value="vacante.Salario" />
+                        <ValidationMessage For=@(() => vacante.Salario) />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="mb-2">Descripcion</label>
+                        <RadzenHtmlEditor @bind-Value=@vacante.Descripcion style="height: 300px; margin-bottom: 1rem;" UploadUrl="upload/image" />
+                        <ValidationMessage For=@(() => vacante.Descripcion) />
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success mt-3">Guardar</button>
+        </EditForm>
+    </RadzenCard>
+</div>
+
+@code {
+    public string value { get; set; } = "";
+}

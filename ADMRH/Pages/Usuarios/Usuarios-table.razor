@@ -1,0 +1,23 @@
+﻿<RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="5" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+                Data="@usuarios" TItem="Usuario" ColumnWidth="300px" LogicalFilterOperator="LogicalFilterOperator.Or">
+    <Columns>
+        <RadzenDataGridColumn TItem="Usuario" Property="Cedula" Title="Cedula" Frozen="true" Width="140px" />
+        <RadzenDataGridColumn TItem="Usuario" Property="Nombre" Title="Nombre" Width="140px" />
+        <RadzenDataGridColumn TItem="Usuario" Property="Apellido" Title="Apellido" Width="200px" />
+        <RadzenDataGridColumn TItem="Usuario" Property="Telefono" Title="Telefono" Width="100px" />
+        <RadzenDataGridColumn TItem="Usuario" Property="Correo" Title="Correo" Width="140px" />
+        <RadzenDataGridColumn TItem="Usuario" Property="Rol" Title="Rol" Width="140px" />
+        <RadzenDataGridColumn TItem="Usuario" Title="Photo" Width="100px" Filterable="false">
+            <Template Context="data">
+                <div class="row">
+                    <div class="col pr-1">
+                        <a style="text-decoration:none;" href="usuarios/view-user" class="btn btn-success w-100"><i class="fas fa-user-edit"></i></a>
+                    </div>
+                    <div class="col pl-1">
+                        <button class="btn btn-danger w-100"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            </Template>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>

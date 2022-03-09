@@ -1,33 +1,185 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">ADMRH</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+﻿@inject IJSRuntime Js
+
+<style>
+    .sidenav {
+        height: 100%;
+        width: 3.5rem;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background: #1c57b9;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+        /*pointer-events: none;*/
+       
+    }
+    .iconMC {
+        width: 3.65rem;
+        margin-left: 3.5rem;
+        height: 60px;
+        background: #eff3f6;
+        position: fixed;
+        z-index: 1;
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+        cursor: pointer;
+        transition: 0.5s;
+    }
+    .iconMC:hover{
+         background: #808080;
+    }
+
+        /*.sidenav a {
+      padding: 6px 6px 6px 15px;
+      text-decoration: none;
+      font-size: 17px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+      background:red;
+      border-bottom:solid 1px black;
+    }*/
+        /* .rz-panel-menu, .rz-navigation-item-wrapper, .rz-navigation-item {
+            overflow-y: hidden !important;
+        }*/
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+    .rz-panel-menu .rz-navigation-item-link {
+        padding-left: 1rem;
+    }
+
+    .rz-navigation-item-text {
+        overflow: hidden;
+    }
+    /* div.rz-navigation-item-wrapper {
+            background: #45536b !important;
+        }*/
+    .rz-navigation-item-wrapper-active:before {
+        background-color: #006797 !important;
+    }
+
+
+    #main {
+        transition: margin-left .4s;
+        padding: 16px;
+        margin-left:70px
+    }
+
+    @@media screen and (max-height: 450px) {
+        .sidenav {
+            padding-top: 15px;
+        }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+    }
+</style>
+
+
+   
+<div id="MostrarOcutar" @onclick="Open" class="iconMC">
+    @if (!cierre)
+    {
+        <i style="float:right; margin-top:14.5px;" class="fas fa-bars fa-2x mr-3"></i>
+    }
+    else
+    {
+        <i style="float:right; margin-top:14.5px;" class="fas fa-times fa-2x mr-3"></i>
+    }
+</div>
+   
+<div id="mySidenav" class="sidenav">
+
+    @*<a href="#"><i style="display:inline" class="fas fa-home fa-1x"></i>  content</a>
+        <a href="#">content</a>*@
+    <a>
+        <RadzenPanelMenu Style="width:100%; overflow-y:hidden !important;">
+            <RadzenPanelMenuItem Text="Inicio" Path="/" Icon="home"></RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="Usuarios" Path="usuarios" Icon="account_circle"></RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="Candidatos" Path="candidatos" Icon="face"></RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="Vacantes" Path="vacantes" Icon="account_balance"></RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="Configuracion" Path="notification" Icon="build"></RadzenPanelMenuItem>
+        </RadzenPanelMenu>
+
+    </a>
+    <div style="height: 100px; width: 100%; background: transparent; bottom: 0px; right: 0px; position: absolute;">
+        <div class="row">
+            <div class="col-sm-9 text-white mb-2">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="40" height="40" class="rounded-circle cursor ml-2" />
+                @if (cierre)
+                {
+                    <span style="transition: 0.5s">
+                        Yunior moreta
+                    </span>
+                }
+            </div>
+            <div class="col text-center pl-0 pt-1 text-white">
+                <i class="fas fa-power-off fa-2x ml-3"></i>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </li>
-    </ul>
-</div>
+
+
+@*<div class="top-row pl-4 navbar navbar-dark">
+        <a class="navbar-brand" href="">ADMRH</a>
+        <button class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+
+    <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+        <ul class="nav flex-column">
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="counter">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Counter
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="fetchdata">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+                </NavLink>
+            </li>
+        </ul>
+    </div>*@
 
 @code {
     private bool collapseNavMenu = true;
 
+
+    public bool cierre { get; set; } = false;
+    async Task Open()
+    {
+        cierre = !cierre;
+        if (cierre)
+        {
+            await Js.InvokeVoidAsync("openNav");
+        }
+        else
+        {
+            await Js.InvokeVoidAsync("closeNav");
+        }
+    }
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
     private void ToggleNavMenu()

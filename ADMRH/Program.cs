@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Radzen;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -18,7 +19,10 @@ namespace ADMRH
             builder.RootComponents.Add<App>("#app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
+            //services.AddScoped<DialogService>();
+            //services.AddScoped<NotificationService>();
+            builder.Services.AddScoped<DialogService>();
+            builder.Services.AddScoped<NotificationService>();
             await builder.Build().RunAsync();
         }
     }
