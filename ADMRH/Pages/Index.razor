@@ -3,21 +3,21 @@
 <h1 class="mt-5">Bienvenido</h1>
 <div class="row">
     <div class="col">
-        <RadzenCard>
-            <h1>34</h1>
+        <RadzenCard Style="border-left: 4px solid #023877">
+            <h1>7</h1>
             <label>Usuarios existentes</label>
         </RadzenCard>
     </div>
     <div class="col">
-        <RadzenCard>
-            <h1>34</h1>
-            <label>Usuarios existentes</label>
+        <RadzenCard Style="border-left: 4px solid #023877">
+            <h1>20</h1>
+            <label>Candidatos en proceso</label>
         </RadzenCard>
     </div>
     <div class="col">
-        <RadzenCard>
-            <h1>34</h1>
-            <label>Usuarios existentes</label>
+        <RadzenCard Style="border-left: 4px solid #023877">
+            <h1>16</h1>
+            <label>Vacantes disponibles</label>
         </RadzenCard>
     </div>
 </div>
@@ -27,19 +27,22 @@
     {
     <RadzenCard>
         <div class="row">
-            <div class="col-sm-10">
+            <div class="col">
                 <h2>Usuarios</h2>
             </div>
+            <div class="col mb-3">
+                <button class="btn btn-success float-right">Exportar <i class="fas fa-file-excel"></i></button>
+            </div>
             @*<div class="col mb-4">
-                <div class="row">
-                    <div class="col">
-                        <button class="btn btn-success w-100">Editar</button>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-danger w-100">Eliminar</button>
-                    </div>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-success w-100">Editar</button>
                 </div>
-            </div>*@
+                <div class="col">
+                    <button class="btn btn-danger w-100">Eliminar</button>
+                </div>
+            </div>
+        </div>*@
         </div>
         <ADMRH.Pages.Usuarios.Usuarios_table />
     </RadzenCard>

@@ -7,6 +7,7 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
+      "CurrieTechnologies.Razor.SweetAlert2.dll": "sha256-DHtYUWeKljMwGFXeSAfErjDpuB4X8cJ1uEQj7Q86DJw=",
       "Microsoft.AspNetCore.Authorization.dll": "sha256-v2n7Q6PfIiAvv9anCBl0llzwtdxr0iCZZar3ne8Bxds=",
       "Microsoft.AspNetCore.Components.dll": "sha256-jAjgCR5HlevP6ZX6aOgY1nmSw3my7LJ2d\/2r+K38zn4=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-YWF2OnontxkaiFcJmOM7wWFQhyWAPkjF+dSyH0okqQE=",
@@ -198,11 +199,11 @@
       "mscorlib.dll": "sha256-0qsbc1acYr3S6P7t9gSYyghOhMVs3CTJ9ukQ1VXqksY=",
       "netstandard.dll": "sha256-4Ejn1oHpeqmTQlJx7Kjuipn0ZVOoG0hGncN+9qyL1lo=",
       "System.Private.CoreLib.dll": "sha256-7n\/jioZu+\/2tD7v1RgjTTrBrviX+kVwPFGJ\/JBsHQGA=",
-      "ADMRH.dll": "sha256-QzeXTbriaBvtBjtTm+yQz95MKImIypgOlRKTFUsAQ3k="
+      "ADMRH.dll": "sha256-z+pIMRaH1NKodux5t54hI0OEoGZEyY9WxsFUKRbG\/rg="
     },
     "lazyAssembly": null,
     "pdb": {
-      "ADMRH.pdb": "sha256-TIcNxRIpgvwEaIruu0dvvaxYN+0BtyoyUuCpWJL5yQ4="
+      "ADMRH.pdb": "sha256-tzyvZR4148OCPSxUAu3MyQJssQBdFB19OtMifnRlk48="
     },
     "runtime": {
       "dotnet.timezones.blat": "sha256-Uv0JiOiPEvlGxygIhcdY8XYm\/Nt+zgVckKrqB2uih0w=",

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "03D7nhK3yimxuyQdVDZ2LddRoll2+fg2MrPbDn0DAaM0+HkKwbHc1w7em0dPDgsxG2b+BiV83yutk7T9onPc9A==",
+  "dgSpecHash": "4tk33+6e1kJ0AHOOskUcVTHIUnXDOzRRt+/c2O7zVSw/zXeU3IpXAT7hpMxS0O8n0NQP+K7lrBoA41jlpCurCg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Alex-carreras\\Desktop\\ADMRH\\ADMRH\\ADMRH.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Alex-carreras\\.nuget\\packages\\currietechnologies.razor.sweetalert2\\5.2.0\\currietechnologies.razor.sweetalert2.5.2.0.nupkg.sha512",
     "C:\\Users\\Alex-carreras\\.nuget\\packages\\libsassbuilder\\2.0.1\\libsassbuilder.2.0.1.nupkg.sha512",
     "C:\\Users\\Alex-carreras\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.13\\microsoft.aspnetcore.authorization.5.0.13.nupkg.sha512",
     "C:\\Users\\Alex-carreras\\.nuget\\packages\\microsoft.aspnetcore.components\\5.0.13\\microsoft.aspnetcore.components.5.0.13.nupkg.sha512",

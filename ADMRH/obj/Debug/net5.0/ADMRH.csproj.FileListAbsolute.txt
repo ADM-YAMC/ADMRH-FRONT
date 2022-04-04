@@ -659,3 +659,8 @@ C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\obj\Debug\net5.0\RazorDeclaration\Pag
 C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\obj\Debug\net5.0\RazorDeclaration\Pages\Candidatos\Candidatos-table.razor.g.cs
 C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\obj\Debug\net5.0\Razor\Pages\Candidatos\Candidatos-home.razor.g.cs
 C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\obj\Debug\net5.0\Razor\Pages\Candidatos\Candidatos-table.razor.g.cs
+C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\bin\Debug\net5.0\wwwroot\_framework\CurrieTechnologies.Razor.SweetAlert2.dll.gz
+C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\bin\Debug\net5.0\wwwroot\_framework\CurrieTechnologies.Razor.SweetAlert2.dll
+C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\obj\Debug\net5.0\build-gz\2cVZKVZa.gz
+C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\obj\Debug\net5.0\RazorDeclaration\Pages\TemplateCorreo.razor.g.cs
+C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\obj\Debug\net5.0\Razor\Pages\TemplateCorreo.razor.g.cs

@@ -1,24 +1,29 @@
 ﻿@page "/usuarios/nuevo-usuario"
-
-
+@inject HttpClient Http
+@inject SweetAlertService Swal;
 <div class="container-sm mt-5">
     <RadzenCard Style="width:60%; margin:auto;">
         <h1>Registro de usuarios</h1>
-        <div class="form-group border-top">
-            <label class="mt-2">Cedula</label>
-            <input class="form-control" />
-        </div>
+        <EditForm Model="usuario" OnValidSubmit="PostUsers">
+            <DataAnnotationsValidator />
+            <div class="form-group border-top">
+                <label class="mt-2">Cedula</label>
+                <InputText placeholder="Escribe la cedula del usuario..." @bind-Value="usuario.Cedula" class="form-control"></InputText>
+                <ValidationMessage For="@(()=> usuario.Cedula)" />
+            </div>
             <div class="row">
                 <div class="col">
                     <div class="form-group">
                         <label>Nombre</label>
-                        <input class="form-control" />
+                        <InputText placeholder="Escribe el nombre del usuario..." @bind-Value="usuario.Nombre" class="form-control"></InputText>
+                        <ValidationMessage For="@(()=> usuario.Nombre)" />
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label>Apellido</label>
-                        <input class="form-control" />
+                        <InputText placeholder="Escribe el apellido del usuario..." @bind-Value="usuario.Apellido" class="form-control"></InputText>
+                        <ValidationMessage For="@(()=> usuario.Apellido)" />
                     </div>
                 </div>
             </div>
@@ -26,13 +31,15 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Telefono</label>
-                        <input class="form-control" />
+                        <InputText placeholder="Escribe el telefono del usuario..." @bind-Value="usuario.Telefono" class="form-control"></InputText>
+                        <ValidationMessage For="@(()=> usuario.Telefono)" />
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label>Correo</label>
-                        <input class="form-control" />
+                        <InputText placeholder="Escribe el correo del usuario..." @bind-Value="usuario.Correo" class="form-control"></InputText>
+                        <ValidationMessage For="@(()=> usuario.Correo)" />
                     </div>
                 </div>
             </div>
@@ -40,23 +47,36 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Departamento</label>
-                        <input class="form-control" />
+                        <InputSelect class="form-control" @bind-Value="usuario.Departamento">
+                            <option selected disabled value="">Seleccione el departamento...</option>
+                            <option value="Tecnologia">Tecnologia</option>
+                            <option value="Finanzas">Finanzas</option>
+                            <option value="Gestion Humana">Gestion Humana</option>
+                            <option value="Legal">Legal</option>
+                            <option value="Ventas">Ventas</option>
+                        </InputSelect>
+                        <ValidationMessage For="@(()=> usuario.Departamento)" />
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label>Rol</label>
-                        <input class="form-control" />
+                        <InputSelect class="form-control" @bind-Value="usuario.Rol">
+                            <option selected disabled value="">Seleccione el rol del usuario...</option>
+                            <option value="Administrador">Administrador</option>
+                            <option value="Analista">Analista de reclutamiento</option>
+                        </InputSelect>
+                        <ValidationMessage For="@(()=> usuario.Rol)" />
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label>Direccion</label>
-                <textarea class="form-control"></textarea>
+                <InputTextArea @bind-Value="usuario.Direccion" class="form-control"></InputTextArea>
+                <ValidationMessage For="@(()=> usuario.Direccion)" />
             </div>
-
-        <button class="btn btn-success mt-3">Guardar</button>
-      
+            <button type="submit" class="btn btn-success mt-3">Guardar</button>
+        </EditForm>
     </RadzenCard>
 </div>
 

@@ -107,6 +107,13 @@ using Radzen.Blazor;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 15 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+using CurrieTechnologies.Razor.SweetAlert2;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/vacantes/nueva-vacante")]
     public partial class Add_Vacantes : Microsoft.AspNetCore.Components.ComponentBase
     {

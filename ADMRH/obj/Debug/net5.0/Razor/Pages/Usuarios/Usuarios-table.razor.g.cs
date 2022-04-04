@@ -107,6 +107,13 @@ using Radzen.Blazor;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 15 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+using CurrieTechnologies.Razor.SweetAlert2;
+
+#line default
+#line hidden
+#nullable disable
     public partial class Usuarios_table : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

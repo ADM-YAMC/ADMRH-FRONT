@@ -8,12 +8,11 @@
         z-index: 1;
         top: 0;
         left: 0;
-        background: #1c57b9;
+        background: #023877;
         overflow-x: hidden;
         transition: 0.5s;
         padding-top: 60px;
         /*pointer-events: none;*/
-       
     }
     .iconMC {
         width: 3.65rem;
@@ -107,7 +106,7 @@
     @*<a href="#"><i style="display:inline" class="fas fa-home fa-1x"></i>  content</a>
         <a href="#">content</a>*@
     <a>
-        <RadzenPanelMenu Style="width:100%; overflow-y:hidden !important;">
+        <RadzenPanelMenu Style="width: 100%; overflow-y: hidden !important; background: #023877; ">
             <RadzenPanelMenuItem Text="Inicio" Path="/" Icon="home"></RadzenPanelMenuItem>
             <RadzenPanelMenuItem Text="Usuarios" Path="usuarios" Icon="account_circle"></RadzenPanelMenuItem>
             <RadzenPanelMenuItem Text="Candidatos" Path="candidatos" Icon="face"></RadzenPanelMenuItem>
@@ -127,11 +126,23 @@
                     </span>
                 }
             </div>
-            <div class="col text-center pl-0 pt-1 text-white">
-                <i class="fas fa-power-off fa-2x ml-3"></i>
-            </div>
+            @if (cierre)
+            {
+                <div class="col text-center pl-0 pt-1 text-white">
+                    <i class="fas fa-power-off fa-2x ml-2"></i>
+                </div>
+            }
+            else
+            {
+                <div class="col text-center pl-0 pt-1 text-white">
+                    <i class="fas fa-power-off fa-2x ml-3"></i>
+                </div>
+            }
         </div>
     </div>
+    @*<div style="height: 40px; width: 100%; background: red; bottom: 0px; right: 0px; position: absolute;">
+       
+    </div>*@
 </div>
 
 

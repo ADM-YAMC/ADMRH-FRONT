@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace ADMRH
+namespace ADMRH.Pages
 {
     #line hidden
     using System;
@@ -117,10 +117,11 @@ using CurrieTechnologies.Razor.SweetAlert2;
 #line default
 #line hidden
 #nullable disable
-    public partial class _Imports : System.Object
+    [Microsoft.AspNetCore.Components.RouteAttribute("/s")]
+    public partial class TemplateCorreo : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
-        protected void Execute()
+        protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
