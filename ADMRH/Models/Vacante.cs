@@ -20,7 +20,6 @@ namespace ADMRH_API.Models
         public string Cargo { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio...")]
         public string Salario { get; set; }
-        [Required(ErrorMessage = "Este campo es obligatorio...")]
         public string FechaCreacion { get; set; }
     }
 }

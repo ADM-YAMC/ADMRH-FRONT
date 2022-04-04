@@ -1,10 +1,13 @@
 ﻿
 @page "/vacantes/nueva-vacante"
+@page "/vacantes/editar-vacante/{IdVacante:int}"
+@using Newtonsoft.Json
+@inject SweetAlertService Swal;
 
 <div class="container-lg mt-5">
     <RadzenCard>
         <h1>Registro de vacantes</h1>
-        <EditForm Model="vacante">
+        <EditForm Model="vacante" OnValidSubmit="GuardarEditarVacantes">
             <DataAnnotationsValidator />
             <div class="row border-top">
                 <div class="col">
@@ -54,4 +57,78 @@
 
 @code {
     public string value { get; set; } = "";
+
+    [Parameter]
+    public int? IdVacante { get; set; }
+
+
+    HttpClient http = new HttpClient();
+    private Response response;
+    List<Vacante> vacantes;
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    if (IdVacante !=null)
+    //    {
+    //        response = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes/{IdVacante}");
+    //        vacante = response.vacante[0];
+    //    }
+    //}
+
+    public async override Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
+        IdVacante = IdVacante ?? 0;
+        if (IdVacante !=0)
+        {
+            response = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes/{IdVacante}");
+            vacante = response.vacante[0];
+            StateHasChanged();
+        }
+        
+    }
+
+    async Task GuardarEditarVacantes()
+    {
+        if (IdVacante !=0)
+        {
+            string json = JsonConvert.SerializeObject(vacante);
+            StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            var responses = await http.PutAsync($"https://localhost:44322/api/Vacantes/{vacante.IdVacante}", httpContent);
+            response = await responses.Content.ReadFromJsonAsync<Response>();
+            if (response.ok == true)
+            {
+                await Swal.FireAsync("¡Exito!", $"{response.mensaje}", "success");
+            }
+            else
+            {
+                await Swal.FireAsync("Oops...", $"{response.mensaje}", "error");
+            }
+        }
+        else
+        {
+            vacante.IdUsuarioCreacion = 3;
+            vacante.FechaCreacion = DateTime.Now.ToString("dd/MM/yyyy");
+            string json = JsonConvert.SerializeObject(vacante);
+            StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            var responses = await http.PostAsync("https://localhost:44322/api/Vacantes", httpContent);
+            response = await responses.Content.ReadFromJsonAsync<Response>();
+            if (response.ok == true)
+            {
+                await Swal.FireAsync("¡Exito!", $"{response.mensaje}", "success");
+            }
+            else
+            {
+                await Swal.FireAsync("Oops...", $"{response.mensaje}", "error");
+            }
+
+           
+        }
+    }
+
+    public class Response
+    {
+        public bool ok { get; set; }
+        public List<Vacante> vacante { get; set; }
+        public string? mensaje { get; set; }
+    }
 }

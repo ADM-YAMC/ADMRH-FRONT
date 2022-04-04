@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace ADMRH.Pages.Usuarios
@@ -15,77 +16,7 @@ namespace ADMRH.Pages.Usuarios
         protected override async Task OnInitializedAsync()
         {
 
-            usuarios = new List<Usuario>()
-            {
-                new Usuario()
-                {
-                    Nombre = "Yunior",
-                    Apellido = "Moreta",
-                    Departamento = "RRHH",
-                    Telefono = "98765434567",
-                    Cedula = "7655678976",
-                    Rol = "Admin",
-                    Correo = "yunior@gmail.com"
-                },
-                new Usuario()
-                {
-                    Nombre = "Yunior",
-                    Apellido = "Moreta",
-                    Departamento = "RRHH",
-                    Telefono = "98765434567",
-                    Cedula = "7655678976",
-                    Rol = "Admin",
-                    Correo = "yunior@gmail.com"
-                },
-                new Usuario()
-                {
-                    Nombre = "Yunior",
-                    Apellido = "Moreta",
-                    Departamento = "RRHH",
-                    Telefono = "98765434567",
-                    Cedula = "7655678976",
-                    Rol = "Admin",
-                    Correo = "yunior@gmail.com"
-                },
-                 new Usuario()
-                {
-                    Nombre = "Yunior",
-                    Apellido = "Moreta",
-                    Departamento = "RRHH",
-                    Telefono = "98765434567",
-                    Cedula = "7655678976",
-                    Rol = "Admin",
-                    Correo = "yunior@gmail.com"
-                }, new Usuario()
-                {
-                    Nombre = "Yunior",
-                    Apellido = "Moreta",
-                    Departamento = "RRHH",
-                    Telefono = "98765434567",
-                    Cedula = "7655678976",
-                    Rol = "Admin",
-                    Correo = "yunior@gmail.com"
-                }, new Usuario()
-                {
-                    Nombre = "Yunior",
-                    Apellido = "Moreta",
-                    Departamento = "RRHH",
-                    Telefono = "98765434567",
-                    Cedula = "7655678976",
-                    Rol = "Admin",
-                    Correo = "yunior@gmail.com"
-                }, new Usuario()
-                {
-                    Nombre = "Yunior",
-                    Apellido = "Moreta",
-                    Departamento = "RRHH",
-                    Telefono = "98765434567",
-                    Cedula = "7655678976",
-                    Rol = "Admin",
-                    Correo = "yunior@gmail.com"
-                }
-            };
-
+            usuarios = await http.GetFromJsonAsync<List<Usuario>>("https://localhost:44322/api/Usuarios");
 
             //var archivo = new Archivo()
             //{

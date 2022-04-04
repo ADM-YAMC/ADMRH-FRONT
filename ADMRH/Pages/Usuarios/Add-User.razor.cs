@@ -14,7 +14,7 @@ namespace ADMRH.Pages.Usuarios
     {
         Usuario usuario = new Usuario();
         private BasicResponse response;
-        EnviarCorreo correo = new EnviarCorreo();
+        //EnviarCorreo correo = new EnviarCorreo();
         async Task PostUsers()
         {
             usuario.Contraseña = "12345678";
@@ -24,8 +24,8 @@ namespace ADMRH.Pages.Usuarios
             response = await responses.Content.ReadFromJsonAsync<BasicResponse>();
             if (response.ok == true)
             {
+                usuario = new Usuario();
                 await Swal.FireAsync("¡Exito!", $"{response.mensaje}", "success");
-                //usuario = new Usuario();
             }
             else
             {

@@ -13,111 +13,119 @@ namespace ADMRH.Pages.Vacantes
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+#line 1 "C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+#line 2 "C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using System.Net.Http.Json;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+#line 3 "C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+#line 4 "C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+#line 5 "C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+#line 6 "C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+#line 7 "C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+#line 8 "C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+#line 9 "C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using ADMRH;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+#line 10 "C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using ADMRH.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+#line 11 "C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using ADMRH.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+#line 12 "C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Radzen;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+#line 13 "C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using ADMRH_API.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+#line 14 "C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Radzen.Blazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\_Imports.razor"
+#line 15 "C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using CurrieTechnologies.Razor.SweetAlert2;
 
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\Pages\Vacantes\Add-Vacantes.razor"
+using Newtonsoft.Json;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/vacantes/nueva-vacante")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/vacantes/editar-vacante/{IdVacante:int}")]
     public partial class Add_Vacantes : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -126,13 +134,88 @@ using CurrieTechnologies.Razor.SweetAlert2;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 55 "C:\Users\Alex-carreras\Desktop\ADMRH\ADMRH\Pages\Vacantes\Add-Vacantes.razor"
+#line 58 "C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\Pages\Vacantes\Add-Vacantes.razor"
        
     public string value { get; set; } = "";
+
+    [Parameter]
+    public int? IdVacante { get; set; }
+
+
+    HttpClient http = new HttpClient();
+    private Response response;
+    List<Vacante> vacantes;
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    if (IdVacante !=null)
+    //    {
+    //        response = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes/{IdVacante}");
+    //        vacante = response.vacante[0];
+    //    }
+    //}
+
+    public async override Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
+        IdVacante = IdVacante ?? 0;
+        if (IdVacante !=0)
+        {
+            response = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes/{IdVacante}");
+            vacante = response.vacante[0];
+            StateHasChanged();
+        }
+        
+    }
+
+    async Task GuardarEditarVacantes()
+    {
+        if (IdVacante !=0)
+        {
+            string json = JsonConvert.SerializeObject(vacante);
+            StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            var responses = await http.PutAsync($"https://localhost:44322/api/Vacantes/{vacante.IdVacante}", httpContent);
+            response = await responses.Content.ReadFromJsonAsync<Response>();
+            if (response.ok == true)
+            {
+                await Swal.FireAsync("¡Exito!", $"{response.mensaje}", "success");
+            }
+            else
+            {
+                await Swal.FireAsync("Oops...", $"{response.mensaje}", "error");
+            }
+        }
+        else
+        {
+            vacante.IdUsuarioCreacion = 3;
+            vacante.FechaCreacion = DateTime.Now.ToString("dd/MM/yyyy");
+            string json = JsonConvert.SerializeObject(vacante);
+            StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            var responses = await http.PostAsync("https://localhost:44322/api/Vacantes", httpContent);
+            response = await responses.Content.ReadFromJsonAsync<Response>();
+            if (response.ok == true)
+            {
+                await Swal.FireAsync("¡Exito!", $"{response.mensaje}", "success");
+            }
+            else
+            {
+                await Swal.FireAsync("Oops...", $"{response.mensaje}", "error");
+            }
+
+           
+        }
+    }
+
+    public class Response
+    {
+        public bool ok { get; set; }
+        public List<Vacante> vacante { get; set; }
+        public string? mensaje { get; set; }
+    }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private SweetAlertService Swal { get; set; }
     }
 }
 #pragma warning restore 1591
