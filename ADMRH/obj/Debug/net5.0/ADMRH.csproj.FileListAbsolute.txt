@@ -1315,7 +1315,6 @@ C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\build
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\build-gz\CdNKbd2b.gz
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\build-gz\Sh5HRkd0.gz
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\build-gz\24DSsska.gz
-C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\build-gz\MmlFVF29.gz
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\scopedcss\bundle\ADMRH.styles.css
@@ -1330,3 +1329,4 @@ C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\ADMRH
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\ref\ADMRH.dll
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\RazorDeclaration\Pages\Usuarios\View-usuarios-page.razor.g.cs
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\Razor\Pages\Usuarios\View-usuarios-page.razor.g.cs
+C:\Users\yunior.moreta.G4S\source\repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\build-gz\sjU+tNT6.gz

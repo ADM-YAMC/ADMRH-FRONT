@@ -77,6 +77,8 @@ namespace ADMRH.Pages
 
         }
 
+
+
         async Task get()
         {
             await http.GetFromJsonAsync<Archivo>("");
