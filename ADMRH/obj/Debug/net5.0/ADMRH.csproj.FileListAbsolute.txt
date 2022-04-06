@@ -1324,9 +1324,9 @@ C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\stati
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\ADMRH.RazorTargetAssemblyInfo.cache
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\ADMRH.csproj.CopyComplete
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\ADMRH.dll
-C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\refint\ADMRH.dll
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\ADMRH.pdb
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\ref\ADMRH.dll
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\RazorDeclaration\Pages\Usuarios\View-usuarios-page.razor.g.cs
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\Razor\Pages\Usuarios\View-usuarios-page.razor.g.cs
 C:\Users\yunior.moreta.G4S\source\repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\build-gz\sjU+tNT6.gz
+C:\Users\yunior.moreta.G4S\source\repos\ADMRH-FRONT\ADMRH\bin\Debug\net5.0\ref\ADMRH.dll
