@@ -117,6 +117,13 @@ using CurrieTechnologies.Razor.SweetAlert2;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\yunior.moreta.G4S\source\repos\ADMRH-FRONT\ADMRH\Pages\Usuarios\Usuarios-table.razor"
+using ADMRH.Pages.Loadings;
+
+#line default
+#line hidden
+#nullable disable
     public partial class Usuarios_table : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -124,6 +131,7 @@ using CurrieTechnologies.Razor.SweetAlert2;
         {
         }
         #pragma warning restore 1998
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private SweetAlertService Swal { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager nav { get; set; }
     }
 }

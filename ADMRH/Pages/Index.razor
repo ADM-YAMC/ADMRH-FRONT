@@ -1,38 +1,40 @@
-﻿@page "/"
+﻿@page "/home"
 
 <h1 class="mt-5">Bienvenido</h1>
-<div class="row">
-    <div class="col">
-        <RadzenCard Style="border-left: 4px solid #023877">
-            <h1>7</h1>
-            <label>Usuarios existentes</label>
-        </RadzenCard>
+@if (total_UCV != null)
+{
+    <div class="row">
+        <div class="col">
+            <RadzenCard Style="border-left: 4px solid #023877">
+                <h1>@total_UCV.CantidadTUsuarios</h1>
+                <label>Usuarios existentes</label>
+            </RadzenCard>
+        </div>
+        <div class="col">
+            <RadzenCard Style="border-left: 4px solid #023877">
+                <h1>@total_UCV.CantidadTCandidatos</h1>
+                <label>Candidatos en proceso</label>
+            </RadzenCard>
+        </div>
+        <div class="col">
+            <RadzenCard Style="border-left: 4px solid #023877">
+                <h1>@total_UCV.cantidadTVacantes</h1>
+                <label>Vacantes disponibles</label>
+            </RadzenCard>
+        </div>
     </div>
-    <div class="col">
-        <RadzenCard Style="border-left: 4px solid #023877">
-            <h1>20</h1>
-            <label>Candidatos en proceso</label>
-        </RadzenCard>
-    </div>
-    <div class="col">
-        <RadzenCard Style="border-left: 4px solid #023877">
-            <h1>16</h1>
-            <label>Vacantes disponibles</label>
-        </RadzenCard>
-    </div>
-</div>
 
+}
 <div class="col pl-0 ml-0 pr-0 mr-0 mt-5">
-    @if (usuarios != null)
-    {
-    <RadzenCard>
-        <ADMRH.Pages.Usuarios.Usuarios_table />
-    </RadzenCard>
-    }
-    else
-    {
-        <h4>
-            Cargando...
-        </h4>
-    }
+    <div class="row">
+        <div class="col">
+            <h2>Usuarios</h2>
+        </div>
+        <div class="col mb-3">
+            <button class="btn btn-success float-right">Exportar <i class="fas fa-file-excel"></i></button>
+        </div>
+    </div>
+        <RadzenCard>
+            <ADMRH.Pages.Usuarios.Usuarios_table />
+        </RadzenCard>
 </div>

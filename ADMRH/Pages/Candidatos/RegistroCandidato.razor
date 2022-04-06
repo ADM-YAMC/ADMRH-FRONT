@@ -1,0 +1,209 @@
+﻿@page "/registro-candidato"
+@layout PublicLayout
+@inject HttpClient http
+@using Newtonsoft.Json
+@inject SweetAlertService Swal;
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <RadzenCard class="m-3">
+            <EditForm Model="@candidate">
+                <DataAnnotationsValidator />
+                <RadzenFieldset>
+                    <h1 class="mb-5">Registro de Candidato</h1>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="m-1 mb-3">
+                                <h4>Nombre</h4>
+                                <RadzenTextBox @bind-Value="candidate.Nombre" Class="w-100" />
+                                <ValidationMessage For="@(()=> candidate.Nombre)" />
+                            </div>
+                            <div class="m-1 mb-3">
+                                <h4>Apellido</h4>
+                                <RadzenTextBox @bind-Value="candidate.Apellido" Class="w-100" />
+                                <ValidationMessage For="@(()=> candidate.Apellido)" />
+                            </div>
+                            <div class="m-1 mb-3">
+                                <h4>Correo electrónico</h4>
+                                <RadzenTextBox @bind-Value="candidate.Correo" Class="w-100" />
+                                <ValidationMessage For="@(()=> candidate.Correo)" />
+                            </div>
+                            <div class="m-1 mb-3">
+                                <h4>Cédula</h4>
+                                <RadzenMask Mask="***-*******-*"
+                                            CharacterPattern="[0-9]"
+                                            Placeholder="Cedula"
+                                            Name="CitizenId" @bind-Value=@candidate.Cedula
+                                            Style="width: 100%;" />
+                                <ValidationMessage For="@(()=> candidate.Cedula)" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="m-1 mb-3">
+                                <h4>Número de teléfono</h4>
+                                <RadzenMask Mask="(***) ***-****"
+                                            CharacterPattern="[0-9]"
+                                            Placeholder="(000) 000-0000"
+                                            Name="Phone" @bind-Value=@candidate.Telefono
+                                            Style="width: 100%;" />
+                                <ValidationMessage For="@(()=> candidate.Telefono)" />
+                            </div>
+                            <div class="m-1 mb-3">
+                                <h4>Dirección</h4>
+                                <RadzenTextBox @bind-Value="candidate.Direccion" Class="w-100" />
+                                <ValidationMessage For="@(()=> candidate.Direccion)" />
+                            </div>
+                            <div class="m-1 mb-3">
+                                <h4 class="my-2">Curriculum Vitae</h4>
+                                <InputFile id="file" type="file" class="d-block" OnChange="@OnFileInputChangeCV" />
+                                @if (estado)
+                                {
+                                    <span class="text-success">@mensaje</span>
+                                }
+                            </div>
+                            <div class="m-1 mb-3">
+                                <h4 class="my-2">Foto 2 x 2</h4>
+                                <InputFile id="file" type="file" class="d-block" OnChange="@OnFileInputChangeFoto" />
+                                @if (estado)
+                                {
+                                    <span class="text-success">@mensaje</span>
+                                }
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+                            <div class="float-end">
+                                <input type="submit" disabled="@(archivoTemp == null)" class="btn btn-primary" value="Guardar todo" />
+                            </div>
+                        </div>
+                    </div>
+                </RadzenFieldset>
+            </EditForm>
+        </RadzenCard>
+    </div>
+</div>
+
+
+
+@code {
+    Candidato candidate = new Candidato();
+    Archivo archivo = new Archivo();
+    ArchivoTemp archivoTemp;
+    string cv, mensaje;
+    bool estado = false;
+
+
+    async Task OnFileInputChangeFoto(InputFileChangeEventArgs e)
+    {
+        IBrowserFile imgFile = e.File;
+        var buffers = new byte[imgFile.Size];
+        await imgFile.OpenReadStream().ReadAsync(buffers);
+        string imageType = imgFile.ContentType;
+        archivo.Cv = $"data:{imageType};base64,{Convert.ToBase64String(buffers)}";
+        if (archivoTemp == null)
+        {
+            if (archivo.Cv != null && archivo.FotoFrente != null)
+            {
+                await GuardarArchivo();
+            }
+        }
+        else
+        {
+            await SobreEscribirArchivo();
+        }
+    }
+
+    async Task OnFileInputChangeCV(InputFileChangeEventArgs e)
+    {
+        IBrowserFile imgFile = e.File;
+        var buffers = new byte[imgFile.Size];
+        await imgFile.OpenReadStream().ReadAsync(buffers);
+        string imageType = imgFile.ContentType;
+        archivo.FotoFrente = $"data:{imageType};base64,{Convert.ToBase64String(buffers)}";
+        if (archivoTemp == null)
+        {
+            if (archivo.Cv != null && archivo.FotoFrente != null)
+            {
+                await GuardarArchivo();
+            }
+        }
+        else
+        {
+            await ConfirmacionSobrescribir();
+        }
+    }
+
+    async Task GuardarArchivo()
+    {
+        estado = true;
+        mensaje = "Guardando...";
+        StateHasChanged();
+        string json = JsonConvert.SerializeObject(archivo);
+        StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var responses = await http.PostAsync("https://localhost:44322/api/Archivos", httpContent);
+        archivoTemp = await responses.Content.ReadFromJsonAsync<ArchivoTemp>();
+        StateHasChanged();
+        if (archivoTemp != null)
+        {
+            mensaje = "Guardado";
+        }
+    }
+
+
+    async Task SobreEscribirArchivo()
+    {
+        var id = archivoTemp.IdArchivos;
+        estado = true;
+        archivoTemp = null;
+        mensaje = "Actualizando...";
+        StateHasChanged();
+        string json = JsonConvert.SerializeObject(archivo);
+        StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var responses = await http.PutAsync($"https://localhost:44322/api/Archivos/{id}", httpContent);
+        archivoTemp = await responses.Content.ReadFromJsonAsync<ArchivoTemp>();
+        StateHasChanged();
+        if (archivoTemp != null)
+        {
+            mensaje = "Guardado";
+        }
+    }
+
+    async Task ConfirmacionSobrescribir()
+    {
+        var result = await Swal.FireAsync(new SweetAlertOptions
+        {
+            Title = "¿Estas seguro?",
+            Text = "¿Estas seguro de que quieres sobrescribir el archivo?",
+            Icon = SweetAlertIcon.Warning,
+            ShowCancelButton = true,
+            ConfirmButtonText = "Si, sobrescribir",
+            CancelButtonText = "No"
+        });
+
+        if (!string.IsNullOrEmpty(result.Value))
+        {
+           await SobreEscribirArchivo();
+        }
+    }
+
+    void OnCreationDateChange(DateTime value)
+    {
+        //
+    }
+
+    void OnError()
+    {
+        // pop up an error notification
+    }
+
+    void Submit()
+    {
+        // submit action
+    }
+
+    void Cancel()
+    {
+        // cancel action
+    }
+}

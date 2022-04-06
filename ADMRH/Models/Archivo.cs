@@ -15,7 +15,15 @@ namespace ADMRH.Models
     {
         public int IdArchivos { get; set; }
         public string FotoFrente { get; set; }
-        public string FotoPerfil { get; set; }
+        public string? FotoPerfil { get; set; }
+        public string Cv { get; set; }
+    }
+
+    public class ArchivoTemp
+    {
+        public int IdArchivos { get; set; }
+        public string FotoFrente { get; set; }
+        public string? FotoPerfil { get; set; }
         public string Cv { get; set; }
     }
 }

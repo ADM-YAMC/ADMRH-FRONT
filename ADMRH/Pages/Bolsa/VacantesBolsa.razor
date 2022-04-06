@@ -1,0 +1,80 @@
+﻿@page "/vacantes-publicas"
+@layout PublicLayout
+
+<h1>Bolsa de Empleos</h1>
+<div class="container-fluid">
+    <div class="row d-flex px-3">
+        <RadzenCard class="m-3">
+            <div class="d-flex flex-row justify-content-between">
+                <div>
+                    <div>
+                        <div class="mt-3">Vacante</div>
+                        <b>Desarrollador de Software</b>
+                        <div class="mt-3">Lugar</div>
+                        <b>República Dominicana, Santo Domingo</b>
+                    </div>
+                    <br/>
+                    <div><small class="mt-5">24 de febrero 2022</small></div>
+                </div>
+               <div>
+                    <RadzenButton
+                        Click=@(args => ApplyJob())
+                        Text="Aplicar"
+                        Icon="add_circle_outline"
+                        ButtonStyle="ButtonStyle.Secondary"
+                    />
+                </div>
+            </div>
+        </RadzenCard>
+        <RadzenCard class="m-3">
+            <div class="d-flex flex-row justify-content-between">
+                <div>
+                    <div>
+                        <div class="mt-3">Vacante</div>
+                        <b>Analista de Calidad QA</b>
+                        <div class="mt-3">Lugar</div>
+                        <b>México, Cancún</b>
+                    </div>
+                    <br/>
+                    <div><small class="mt-5">24 de febrero 2022</small></div>
+                </div>
+                <div>
+                    <RadzenButton
+                        Click=@(args => ApplyJob())
+                        Text="Aplicar"
+                        Icon="add_circle_outline"
+                        ButtonStyle="ButtonStyle.Secondary"
+                    />
+                </div>
+            </div>
+        </RadzenCard>
+        <RadzenCard class="m-3">
+            <div class="d-flex flex-row justify-content-between">
+                <div>
+                    <div>
+                        <div class="mt-3">Vacante</div>
+                        <b>Gerente de TI</b>
+                        <div class="mt-3">Lugar</div>
+                        <b>República Dominicana, Santo Domingo</b>
+                    </div>
+                    <br/>
+                    <div><small class="mt-5">24 de febrero 2022</small></div>
+                </div>
+                <div>
+                    <RadzenButton
+                        Click=@(args => ApplyJob())
+                        Text="Aplicar"
+                        Icon="add_circle_outline"
+                        ButtonStyle="ButtonStyle.Secondary"
+                    />
+                </div>
+            </div>
+        </RadzenCard>
+    </div>
+</div>
+@code {
+    void ApplyJob()
+    {
+        // Apply job logic
+    }
+}

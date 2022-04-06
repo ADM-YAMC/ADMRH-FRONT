@@ -5,35 +5,43 @@
     @if (vacantes.Count != 0)
     {
         <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="5" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
-                Data="@vacantes" TItem="Vacante" ColumnWidth="300px" @ref="VacantesGrid" LogicalFilterOperator="LogicalFilterOperator.Or">
-    <Columns>
-        <RadzenDataGridColumn TItem="Vacante" Property="Nombre" Title="Nombre" Frozen="true" Width="140px" />
-        <RadzenDataGridColumn TItem="Vacante" Property="Departamento" Title="Departamento" Width="140px" />
-        <RadzenDataGridColumn TItem="Vacante" Property="Descripcion" Title="Descripcion" Width="200px" />
-        <RadzenDataGridColumn TItem="Vacante" Property="Cargo" Title="Cargo" Width="100px" />
-        <RadzenDataGridColumn TItem="Vacante" Property="Salario" Title="Salario" Width="140px" />
-        <RadzenDataGridColumn TItem="Vacante" Title="Photo" Width="100px" Filterable="false">
-            <Template Context="data">
-                <div class="row m-auto">
-                    <div class="col pr-1">
-                        <a href="vacantes/editar-vacante/@data.IdVacante" class="btn btn-success w-100"><i class="fas fa-user-edit"></i></a>
-                    </div>
-                    <div class="col pl-1">
-                        <button class="btn btn-danger w-100" @onclick="@(()=>ConfirmacionElimanarVacante(data))"><i class="fas fa-trash"></i></button>
-                    </div>
-                </div>
-            </Template>
-        </RadzenDataGridColumn>
-    </Columns>
+                        Data="@vacantes" TItem="Vacante" ColumnWidth="300px" @ref="VacantesGrid" LogicalFilterOperator="LogicalFilterOperator.Or">
+            <Columns>
+                <RadzenDataGridColumn TItem="Vacante" Property="Nombre" Title="Nombre" Frozen="true" Width="140px" />
+                <RadzenDataGridColumn TItem="Vacante" Property="Departamento" Title="Departamento" Width="140px" />
+                <RadzenDataGridColumn TItem="Vacante" Property="Descripcion" Title="Descripcion" Width="200px" />
+                <RadzenDataGridColumn TItem="Vacante" Property="Cargo" Title="Cargo" Width="100px" />
+                <RadzenDataGridColumn TItem="Vacante" Property="Salario" Title="Salario" Width="140px" />
+                <RadzenDataGridColumn TItem="Vacante" Title="Photo" Width="100px" Filterable="false">
+                    <Template Context="data">
+                        <div class="row m-auto">
+                            <div class="col pr-1">
+                                <a href="vacantes/editar-vacante/@data.IdVacante" class="btn btn-success w-100"><i class="fas fa-user-edit"></i></a>
+                            </div>
+                            <div class="col pl-1">
+                                <button class="btn btn-danger w-100" @onclick="@(()=>ConfirmacionElimanarVacante(data))"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </Template>
+                </RadzenDataGridColumn>
+            </Columns>
         </RadzenDataGrid>
-        }
-        else
-        {
-             <div class="alert alert-danger mt-3">
-                 @(IdUsuario != null ? "El usuario no cuenta con vacantes creadas...": "")
-             </div>
-        }
+    }
+    else
+    {
+        <div class="alert alert-danger mt-3">
+            @(IdUsuario != null ? "El usuario no cuenta con vacantes creadas...": "")
+        </div>
+    }
 
-}else{
-     <h5>Cargando las vacantes...</h5>
+}
+else
+{
+    <h5>Cargando las vacantes...</h5>
+}
+
+@if (loading)
+{
+<Loading />
+    
 }

@@ -18,10 +18,16 @@ namespace ADMRH.Pages.Usuarios
         HttpClient http = new HttpClient();
         CedulaUsuario cedula = new CedulaUsuario();
         private ResponseUser response;
+        private ResponseMessageCountCantidaVC responseMessageCountCantidaVC;
+        public bool loading { get; set; } = false;
         protected override async Task OnInitializedAsync()
         {
+            loading = true;
             usuario = await http.GetFromJsonAsync<Usuario>($"https://localhost:44322/api/Usuarios/{idUsuario}");
             cedula = await http.GetFromJsonAsync<CedulaUsuario?>($"https://api.adamix.net/apec/cedula/{usuario.Cedula}");
+            responseMessageCountCantidaVC = await  http.GetFromJsonAsync<ResponseMessageCountCantidaVC>($"https://localhost:44322/api/Usuarios/cantidadVC/{idUsuario}");
+            if (usuario != null)
+                loading = false;
         }
 
 
@@ -35,10 +41,12 @@ namespace ADMRH.Pages.Usuarios
             if (response.ok == true)
             {
                 await Swal.FireAsync("¡Exito!", $"{response.mensaje}", "success");
+                loading = false;
             }
             else
             {
                 await Swal.FireAsync("Oops...", $"{response.mensaje}", "error");
+                loading = false;
             }
         }
 

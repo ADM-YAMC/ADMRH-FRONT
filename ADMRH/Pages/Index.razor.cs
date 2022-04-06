@@ -15,66 +15,18 @@ namespace ADMRH.Pages
         HttpClient http = new HttpClient();
         public Root files;
         List<Usuario> usuarios;
+        private ResponsecantidadTotal_UCV total_UCV;
         protected override async Task OnInitializedAsync()
         {
-
-            usuarios =  new List<Usuario>()
+            try
             {
-                new Usuario()
-                {
-                    Nombre = "Yunior",
-                    Apellido = "Moreta",
-                    Departamento = "RRHH",
-                    Telefono = "98765434567",
-                    Cedula = "7655678976",
-                    Rol = "Admin",
-                    Correo = "yunior@gmail.com"
-                },
-                new Usuario()
-                {
-                    Nombre = "Yunior",
-                    Apellido = "Moreta",
-                    Departamento = "RRHH",
-                    Telefono = "98765434567",
-                    Cedula = "7655678976",
-                    Rol = "Admin",
-                    Correo = "yunior@gmail.com"
-                },
-                new Usuario()
-                {
-                    Nombre = "Yunior",
-                    Apellido = "Moreta",
-                    Departamento = "RRHH",
-                    Telefono = "98765434567",
-                    Cedula = "7655678976",
-                    Rol = "Admin",
-                    Correo = "yunior@gmail.com"
-                }
-            };
+                total_UCV = await http.GetFromJsonAsync<ResponsecantidadTotal_UCV>("https://localhost:44322/api/Usuarios/cantidadTotal_UCV");
+            }
+            catch (Exception)
+            {
 
-
-            //var archivo = new Archivo()
-            //{
-            //    FotoFrente = "unll",
-            //    FotoPerfil = "dsd",
-            //    Cv = "sda"
-            //};
-
-            //var json = JsonConvert.SerializeObject(archivo);
-
-            //await http.PostAsJsonAsync<Archivo>("https://localhost:44322/api/Archivos", archivo);
-
-            //try
-            //{
-            //    files = await http.GetFromJsonAsync<Root>("https://localhost:44322/api/Archivos");
-            //    Console.WriteLine(files);
-            //}
-            //catch (Exception)
-            //{
-
-            //    throw;
-            //}
-
+                
+            }
         }
 
 
@@ -82,6 +34,14 @@ namespace ADMRH.Pages
         async Task get()
         {
             await http.GetFromJsonAsync<Archivo>("");
+        }
+
+        public class ResponsecantidadTotal_UCV
+        {
+            public bool ok { get; set; }
+            public int cantidadTVacantes { get; set; }
+            public int CantidadTCandidatos { get; set; }
+            public int CantidadTUsuarios { get; set; }
         }
     }
 }

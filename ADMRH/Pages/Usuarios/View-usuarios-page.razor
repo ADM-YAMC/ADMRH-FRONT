@@ -13,102 +13,105 @@
         </div>
     </div>
     <EditForm Model="usuario">
-         <DataAnnotationsValidator/>   
-       <div class="row border-top">
-        <div class="col-sm-2 mt-2 pr-1">
-            <div class="img" style="background-image: url(@(cedula.ok==true ? cedula.foto:"businessman.png"));">
-               
+        <DataAnnotationsValidator />
+        <div class="row border-top">
+            <div class="col-sm-2 mt-2 pr-1">
+                <div class="img" style="background-image: url(@(cedula.ok==true ? cedula.foto:"businessman.png"));">
+
+                </div>
             </div>
-        </div>
-         <div class="col mt-2">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label>Cedula</label>
-                                <InputText disabled="@(!OpenEdit)" class="form-control" @bind-Value="usuario.Cedula" type="text"></InputText>
-                                 <ValidationMessage For="@(()=> usuario.Cedula)"/>
-                            </div>
-                            <div class="form-group">
-                                <label>Nombre</label>
-                                <InputText disabled="@(!OpenEdit)" class="form-control" @bind-Value="usuario.Nombre" type="text"></InputText>
-                                 <ValidationMessage For="@(()=> usuario.Nombre)"/>
-                            </div>
-                            <div class="form-group">
-                                <label>Apellido</label>
-                                <InputText disabled="@(!OpenEdit)" class="form-control" @bind-Value="usuario.Apellido" type="text"></InputText>
-                                 <ValidationMessage For="@(()=> usuario.Apellido)"/>
-                            </div>
+            <div class="col mt-2">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Cedula</label>
+                            <InputText disabled="@(!OpenEdit)" class="form-control" @bind-Value="usuario.Cedula" type="text"></InputText>
+                            <ValidationMessage For="@(()=> usuario.Cedula)" />
                         </div>
-                        <div class="col">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                <label>Departamento</label>
-                                <InputSelect disabled="@(!OpenEdit)" class="form-control" @bind-Value="usuario.Departamento">
-                                    <option value="Tecnologia">Tecnologia</option>
-                                    <option value="Finanzas">Finanzas</option>
-                                    <option value="Gestion Humana">Gestion Humana</option>
-                                    <option value="Legal">Legal</option>
-                                    <option value="Ventas">Ventas</option>
-                                </InputSelect>
-                                <ValidationMessage For="@(()=> usuario.Departamento)" />
-                            </div>
-                             </div>
-                              <div class="col">
-                            <div class="form-group">
-                                <label>Rol</label>
-                                <InputSelect disabled="@(!OpenEdit)" class="form-control" @bind-Value="usuario.Rol">
-                                    <option value="Administrador">Administrador</option>
-                                    <option value="Analista">Analista de reclutamiento</option>
-                                </InputSelect>
-                                <ValidationMessage For="@(()=> usuario.Rol)" />
-                            </div>
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <InputText disabled="@(!OpenEdit)" class="form-control" @bind-Value="usuario.Nombre" type="text"></InputText>
+                            <ValidationMessage For="@(()=> usuario.Nombre)" />
                         </div>
-                             </div>
-                           
-                            <div class="form-group">
-                                <label>Correo</label>
-                            <InputText class="form-control" @bind-Value="usuario.Correo" disabled="@(!OpenEdit)" type="text"></InputText>
-                                 <ValidationMessage For="@(()=> usuario.Correo)"/>
-                            </div>
-                            <div class="form-group">
-                                <label>Telefono</label>
-                                <InputText class="form-control" @bind-Value="usuario.Telefono" disabled="@(!OpenEdit)" type="text"></InputText>
-                                 <ValidationMessage For="@(()=> usuario.Telefono)"/>
-                            </div>
+                        <div class="form-group">
+                            <label>Apellido</label>
+                            <InputText disabled="@(!OpenEdit)" class="form-control" @bind-Value="usuario.Apellido" type="text"></InputText>
+                            <ValidationMessage For="@(()=> usuario.Apellido)" />
                         </div>
                     </div>
-                    <div class="col pl-0 pr-0">
-                         <div class="form-group">
-                            <label>Direccion</label>
-                            <InputTextArea style="height:75px;" @bind-Value="usuario.Direccion" disabled="@(!OpenEdit)" class="form-control"></InputTextArea>
-                            <ValidationMessage For="@(()=> usuario.Direccion)" />
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Departamento</label>
+                                    <InputSelect disabled="@(!OpenEdit)" class="form-control" @bind-Value="usuario.Departamento">
+                                        <option value="Tecnologia">Tecnologia</option>
+                                        <option value="Finanzas">Finanzas</option>
+                                        <option value="Gestion Humana">Gestion Humana</option>
+                                        <option value="Legal">Legal</option>
+                                        <option value="Ventas">Ventas</option>
+                                    </InputSelect>
+                                    <ValidationMessage For="@(()=> usuario.Departamento)" />
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Rol</label>
+                                    <InputSelect disabled="@(!OpenEdit)" class="form-control" @bind-Value="usuario.Rol">
+                                        <option value="Administrador">Administrador</option>
+                                        <option value="Analista">Analista de reclutamiento</option>
+                                    </InputSelect>
+                                    <ValidationMessage For="@(()=> usuario.Rol)" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Correo</label>
+                            <InputText class="form-control" @bind-Value="usuario.Correo" disabled="@(!OpenEdit)" type="text"></InputText>
+                            <ValidationMessage For="@(()=> usuario.Correo)" />
+                        </div>
+                        <div class="form-group">
+                            <label>Telefono</label>
+                            <InputText class="form-control" @bind-Value="usuario.Telefono" disabled="@(!OpenEdit)" type="text"></InputText>
+                            <ValidationMessage For="@(()=> usuario.Telefono)" />
                         </div>
                     </div>
                 </div>
-        <div class="col-sm-2" style="margin-top:28px">
-            <RadzenCard>
-                <h1 style="font-size:35px;" class="mb-0">34</h1>
-                <label>Vacantes creadas</label>
-            </RadzenCard>
-            <RadzenCard class="mt-1">
-                <h1 style="font-size:35px;" class="mb-0">34</h1>
-                <label>Candidatos gestionados</label>
-            </RadzenCard>
-            <RadzenCard class="mt-1" hidden="@(!OpenEdit)">
-                <button @onclick="OnPutAsync" class="btn btn-success">Guardar</button>
-            </RadzenCard>
+                <div class="col pl-0 pr-0">
+                    <div class="form-group">
+                        <label>Direccion</label>
+                        <InputTextArea style="height:75px;" @bind-Value="usuario.Direccion" disabled="@(!OpenEdit)" class="form-control"></InputTextArea>
+                        <ValidationMessage For="@(()=> usuario.Direccion)" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2" style="margin-top:28px">
+                @if (responseMessageCountCantidaVC != null)
+                {
+                    <RadzenCard>
+                        <h1 style="font-size:35px;" class="mb-0">@responseMessageCountCantidaVC.cantidadVacantes</h1>
+                        <label>Vacantes creadas</label>
+                    </RadzenCard>
+                    <RadzenCard class="mt-1">
+                        <h1 style="font-size:35px;" class="mb-0">@responseMessageCountCantidaVC.CantidadCandidatos</h1>
+                        <label>Candidatos gestionados</label>
+                    </RadzenCard>
+                }
+                <RadzenCard class="mt-1" hidden="@(!OpenEdit)">
+                    <button @onclick="OnPutAsync" class="btn btn-success">Guardar</button>
+                </RadzenCard>
+            </div>
         </div>
-    </div>
-        </EditForm>
-    
+    </EditForm>
+
 
 </RadzenCard>
 <RadzenCard class="mt-4">
     <h2>Usuarios gestionados</h2>
     <div class="row border-top">
         <div class="col">
-            
+
         </div>
     </div>
 </RadzenCard>
@@ -120,15 +123,21 @@
         </div>
     </div>
 </RadzenCard>
- <style>
-     .img {
-         width: 100%;
-         height: 310px;
-         background-position: center;
-         background-repeat: no-repeat;
-         background-size: 100% 100%;
-     }
- </style>
+<style>
+    .img {
+        width: 100%;
+        height: 310px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+</style>
+
+@if (loading)
+{
+    <Loading />
+
+}
 @code {
-    
+
 }

@@ -114,6 +114,13 @@ using CurrieTechnologies.Razor.SweetAlert2;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 16 "C:\Users\yunior.moreta.G4S\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+using ADMRH.Pages.Loadings;
+
+#line default
+#line hidden
+#nullable disable
     public partial class App : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

@@ -21,16 +21,22 @@ namespace ADMRH.Pages.Vacantes
 
         [Parameter]
         public string IdUsuario { get; set; }
+
+        public bool loading { get; set; } = false;
         protected override async Task OnInitializedAsync()
         {
+            loading = true;
             if (IdUsuario != null)
             {
                 response = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes/user/{IdUsuario}");
                 vacantes = response.vacante;
+                loading = false;
+
             }
             else {
                 response = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes");
                 vacantes = response.vacante;
+                loading = false;
             }
         }
 
@@ -48,7 +54,8 @@ namespace ADMRH.Pages.Vacantes
 
             if (!string.IsNullOrEmpty(result.Value))
             {
-               await deleteVacante(vacante);
+                loading = true;
+                await deleteVacante(vacante);
             }
         }
         async Task deleteVacante(Vacante vacante)
@@ -65,6 +72,8 @@ namespace ADMRH.Pages.Vacantes
                 await Swal.FireAsync("Oops...", $"{response.mensaje}", "error");
             }
             await VacantesGrid.Reload();
+            if (response != null)
+                loading = false;
         }
 
     }

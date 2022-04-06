@@ -118,6 +118,13 @@ using CurrieTechnologies.Razor.SweetAlert2;
 #line hidden
 #nullable disable
 #nullable restore
+#line 16 "C:\Users\yunior.moreta.G4S\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+using ADMRH.Pages.Loadings;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 4 "C:\Users\yunior.moreta.G4S\source\repos\ADMRH-FRONT\ADMRH\Pages\Vacantes\Add-Vacantes.razor"
 using Newtonsoft.Json;
 
