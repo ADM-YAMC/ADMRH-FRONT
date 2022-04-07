@@ -146,6 +146,7 @@ using Newtonsoft.Json;
     Candidato candidate = new Candidato();
     Archivo archivo = new Archivo();
     ArchivoTemp archivoTemp;
+    ResponseC responseC;
     string cv, mensaje;
     bool estado = false;
 
@@ -239,10 +240,39 @@ using Newtonsoft.Json;
 
         if (!string.IsNullOrEmpty(result.Value))
         {
-           await SobreEscribirArchivo();
+            await SobreEscribirArchivo();
         }
     }
 
+    async Task GuardarCandidato()
+    {
+        candidate.IdArchivos = archivoTemp.IdArchivos;
+        candidate.IdUsuarioCreacion = 0;
+        candidate.IdVacante = 1;
+        candidate.FechaCreacion = DateTime.Now.ToString("dd/MM/yyyy");
+        string json = JsonConvert.SerializeObject(candidate);
+        StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var responses = await http.PostAsync("https://localhost:44322/api/Candidatos", httpContent);
+        responseC = await responses.Content.ReadFromJsonAsync<ResponseC>();
+        if (responseC.ok == true)
+        {
+            candidate = new Candidato();
+            archivoTemp = null;
+            archivo = new Archivo();
+            estado = false;
+            Navigate.NavigateTo("vacantes-publicas");
+            await Swal.FireAsync("¡Exito!", $"{responseC.message}", "success");
+        }
+        else
+        {
+            await Swal.FireAsync("Oops...", $"{responseC.message}", "error");
+        }
+    }
+    public class ResponseC
+    {
+        public bool ok { get; set; }
+        public string message { get; set; }
+    }
     void OnCreationDateChange(DateTime value)
     {
         //
@@ -266,6 +296,7 @@ using Newtonsoft.Json;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager Navigate { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private SweetAlertService Swal { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient http { get; set; }
     }
