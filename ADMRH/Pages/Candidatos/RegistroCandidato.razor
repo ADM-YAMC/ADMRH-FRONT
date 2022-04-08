@@ -1,4 +1,4 @@
-﻿@page "/registro-candidato"
+﻿@page "/vacantes-publicas/registro-candidato/{IdVacante:int}"
 @layout PublicLayout
 @inject HttpClient http
 @using Newtonsoft.Json
@@ -8,10 +8,12 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
         <RadzenCard class="m-3">
+           
             <EditForm Model="@candidate" OnValidSubmit="GuardarCandidato">
                 <DataAnnotationsValidator />
                 <RadzenFieldset>
-                    <h1 class="mb-5">Registro de Candidato</h1>
+
+                    <h1 class="d-inline pt-2">Registro de Candidato</h1>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="m-1 mb-3">
@@ -72,9 +74,16 @@
                             </div>
 
                         </div>
-                        <div class="col-md-12">
-                            <div class="float-end">
-                                <input type="submit" disabled="@(archivoTemp == null)" class="btn btn-primary" value="Guardar todo" />
+                        <div class="row">
+                            <div class="col">
+                                <div class="float-left">
+                                    <input type="submit" class="btn btn-warning ml-2" value="Volver" @onclick="@(() => Navigate.NavigateTo("/"))" />
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="float-end">
+                                    <input type="submit" disabled="@(archivoTemp == null)" class="btn btn-primary" value="Guardar todo" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -93,6 +102,9 @@
     ResponseC responseC;
     string cv, mensaje;
     bool estado = false;
+
+    [Parameter]
+    public int IdVacante { get; set; }
 
 
     async Task OnFileInputChangeFoto(InputFileChangeEventArgs e)
@@ -192,7 +204,7 @@
     {
         candidate.IdArchivos = archivoTemp.IdArchivos;
         candidate.IdUsuarioCreacion = 0;
-        candidate.IdVacante = 1;
+        candidate.IdVacante = IdVacante;
         candidate.FechaCreacion = DateTime.Now.ToString("dd/MM/yyyy");
         string json = JsonConvert.SerializeObject(candidate);
         StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");

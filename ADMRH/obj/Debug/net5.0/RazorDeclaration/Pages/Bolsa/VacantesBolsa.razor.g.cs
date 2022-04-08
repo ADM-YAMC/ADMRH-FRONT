@@ -125,7 +125,7 @@ using ADMRH.Pages.Loadings;
 #line hidden
 #nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(PublicLayout))]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/vacantes-publicas")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class VacantesBolsa : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -133,17 +133,8 @@ using ADMRH.Pages.Loadings;
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 75 "C:\Users\yunior.moreta.G4S\source\repos\ADMRH-FRONT\ADMRH\Pages\Bolsa\VacantesBolsa.razor"
-       
-    void ApplyJob()
-    {
-        // Apply job logic
-    }
-
-#line default
-#line hidden
-#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient http { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager Navigate { get; set; }
     }
 }
 #pragma warning restore 1591

@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace ADMRH.Pages.Login
+namespace ADMRH.Pages.Bolsa
 {
     #line hidden
     using System;
@@ -124,26 +124,13 @@ using ADMRH.Pages.Loadings;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(PublicLayout))]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/tg")]
-    public partial class Login : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class VacantesBolsa_razor : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 23 "C:\Users\yunior.moreta.G4S\source\repos\ADMRH-FRONT\ADMRH\Pages\Login\Login.razor"
-       
-    void OnLogin(LoginArgs args)
-    {
-        // Log user logic
-    }
-
-#line default
-#line hidden
-#nullable disable
     }
 }
 #pragma warning restore 1591

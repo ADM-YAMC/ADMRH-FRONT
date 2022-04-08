@@ -132,7 +132,7 @@ using Newtonsoft.Json;
 #line hidden
 #nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(PublicLayout))]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/registro-candidato")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/vacantes-publicas/registro-candidato/{IdVacante:int}")]
     public partial class RegistroCandidato : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -141,7 +141,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 89 "C:\Users\yunior.moreta.G4S\source\repos\ADMRH-FRONT\ADMRH\Pages\Candidatos\RegistroCandidato.razor"
+#line 98 "C:\Users\yunior.moreta.G4S\source\repos\ADMRH-FRONT\ADMRH\Pages\Candidatos\RegistroCandidato.razor"
        
     Candidato candidate = new Candidato();
     Archivo archivo = new Archivo();
@@ -149,6 +149,9 @@ using Newtonsoft.Json;
     ResponseC responseC;
     string cv, mensaje;
     bool estado = false;
+
+    [Parameter]
+    public int IdVacante { get; set; }
 
 
     async Task OnFileInputChangeFoto(InputFileChangeEventArgs e)
@@ -248,7 +251,7 @@ using Newtonsoft.Json;
     {
         candidate.IdArchivos = archivoTemp.IdArchivos;
         candidate.IdUsuarioCreacion = 0;
-        candidate.IdVacante = 1;
+        candidate.IdVacante = IdVacante;
         candidate.FechaCreacion = DateTime.Now.ToString("dd/MM/yyyy");
         string json = JsonConvert.SerializeObject(candidate);
         StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");

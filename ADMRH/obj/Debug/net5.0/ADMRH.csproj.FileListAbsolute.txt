@@ -1069,7 +1069,6 @@ C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\bin\Debug\net5.0\wwwro
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\bin\Debug\net5.0\wwwroot\_framework\icudt_EFIGS.dat
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\bin\Debug\net5.0\wwwroot\_framework\icudt_no_CJK.dat
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\bin\Debug\net5.0\wwwroot\_framework\dotnet.5.0.15.js
-C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\ADMRH.csproj.AssemblyReference.cache
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\ADMRH.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\ADMRH.AssemblyInfoInputs.cache
 C:\Users\yunior.moreta.G4S\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\ADMRH.AssemblyInfo.cs
@@ -1342,3 +1341,4 @@ C:\Users\yunior.moreta.G4S\source\repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\Razor
 C:\Users\yunior.moreta.G4S\source\repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\Razor\Pages\Loadings\Loading.razor.g.cs
 C:\Users\yunior.moreta.G4S\source\repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\RazorDeclaration\Pages\Candidatos\RegistroCandidato.razor.g.cs
 C:\Users\yunior.moreta.G4S\source\repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\Razor\Pages\Candidatos\RegistroCandidato.razor.g.cs
+C:\Users\yunior.moreta.G4S\source\repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\ADMRH.csproj.AssemblyReference.cache

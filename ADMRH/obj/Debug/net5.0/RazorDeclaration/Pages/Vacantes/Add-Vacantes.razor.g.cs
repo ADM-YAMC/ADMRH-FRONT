@@ -131,6 +131,13 @@ using Newtonsoft.Json;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "C:\Users\yunior.moreta.G4S\source\repos\ADMRH-FRONT\ADMRH\Pages\Vacantes\Add-Vacantes.razor"
+using System.IO;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/vacantes/nueva-vacante")]
     [Microsoft.AspNetCore.Components.RouteAttribute("/vacantes/editar-vacante/{IdVacante:int}")]
     public partial class Add_Vacantes : Microsoft.AspNetCore.Components.ComponentBase
@@ -141,7 +148,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 58 "C:\Users\yunior.moreta.G4S\source\repos\ADMRH-FRONT\ADMRH\Pages\Vacantes\Add-Vacantes.razor"
+#line 147 "C:\Users\yunior.moreta.G4S\source\repos\ADMRH-FRONT\ADMRH\Pages\Vacantes\Add-Vacantes.razor"
        
     public string value { get; set; } = "";
 
@@ -152,14 +159,20 @@ using Newtonsoft.Json;
     HttpClient http = new HttpClient();
     private Response response;
     List<Vacante> vacantes;
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    if (IdVacante !=null)
-    //    {
-    //        response = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes/{IdVacante}");
-    //        vacante = response.vacante[0];
-    //    }
-    //}
+    RootProvincia provincia;
+    ProvinciasRD provinciasRD = new ProvinciasRD();
+
+
+    void OnchageTimeinit(ChangeEventArgs args)
+    {
+        vacante.HoraInicio = Convert.ToDateTime(args.Value).ToString("HH:mm tt");
+    }
+    void OnchageTimeEnd(ChangeEventArgs args)
+    {
+        vacante.HoraFin = Convert.ToDateTime(args.Value).ToString("HH:mm tt");
+
+    }
+
 
     public async override Task SetParametersAsync(ParameterView parameters)
     {
@@ -170,8 +183,12 @@ using Newtonsoft.Json;
             response = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes/{IdVacante}");
             vacante = response.vacante[0];
             StateHasChanged();
+            provincia = JsonConvert.DeserializeObject<RootProvincia>(provinciasRD.GetProvincias());
+            StateHasChanged();
         }
-        
+
+        provincia = JsonConvert.DeserializeObject<RootProvincia>(provinciasRD.GetProvincias());
+
     }
 
     async Task GuardarEditarVacantes()
@@ -194,13 +211,13 @@ using Newtonsoft.Json;
         else
         {
             vacante.IdUsuarioCreacion = 3;
-            vacante.FechaCreacion = DateTime.Now.ToString("dd/MM/yyyy");
             string json = JsonConvert.SerializeObject(vacante);
             StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
             var responses = await http.PostAsync("https://localhost:44322/api/Vacantes", httpContent);
             response = await responses.Content.ReadFromJsonAsync<Response>();
             if (response.ok == true)
             {
+                vacante = new Vacante();
                 await Swal.FireAsync("¡Exito!", $"{response.mensaje}", "success");
             }
             else
@@ -208,7 +225,7 @@ using Newtonsoft.Json;
                 await Swal.FireAsync("Oops...", $"{response.mensaje}", "error");
             }
 
-           
+
         }
     }
 
@@ -218,6 +235,19 @@ using Newtonsoft.Json;
         public List<Vacante> vacante { get; set; }
         public string? mensaje { get; set; }
     }
+
+    public class Provincia
+    {
+        public int codigo { get; set; }
+        public string nombre { get; set; }
+    }
+
+    public class RootProvincia
+    {
+        public int status { get; set; }
+        public List<Provincia> data { get; set; }
+    }
+
 
 #line default
 #line hidden

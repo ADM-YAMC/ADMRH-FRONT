@@ -3,6 +3,7 @@
 @page "/vacantes/editar-vacante/{IdVacante:int}"
 @using Newtonsoft.Json
 @inject SweetAlertService Swal;
+@using System.IO;
 
 <div class="container-lg mt-5">
     <RadzenCard>
@@ -19,25 +20,113 @@
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <label>Departamento</label>
-                        <InputText class="form-control" @bind-Value="vacante.Departamento" />
-                        <ValidationMessage For=@(() => vacante.Departamento) />
+                        <label>Provincia solicitante</label>
+                        <InputSelect class="form-control" @bind-Value="vacante.Provincia">
+                            <option value="" disabled selected>Selecione la provincia...</option>
+                            @if (provincia != null)
+                            {
+                                foreach (var item in provincia.data)
+                                {
+                                   <option value="@item.nombre">@item.nombre</option>
+                                }
+                            }
+                        </InputSelect>
+                        <ValidationMessage For=@(() => vacante.Provincia) />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Cargo</label>
+                                <InputText class="form-control" @bind-Value="vacante.Cargo" />
+                                <ValidationMessage For=@(() => vacante.Cargo) />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Departamento</label>
+                                <InputSelect class="form-control" @bind-Value="vacante.Departamento">
+                                    <option value="" disabled selected>Selecione el dia...</option>
+                                    <option value="Gestion Humana">Gestion Humana</option>
+                                    <option value="Tecnologia">Tecnologia</option>
+                                    <option value="Finanzas">Finanzas</option>
+                                    <option value="Contabilidad">Contabilidad</option>
+                                    <option value="Operaciones">Operaciones</option>
+                                    <option value="Ventas">Ventas</option>
+                                    <option value="Seguridad">Seguridad</option>
+                                </InputSelect>
+                                <ValidationMessage For=@(() => vacante.Departamento) />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Salario</label>
+                                <InputText class="form-control" @bind-Value="vacante.Salario" />
+                                <ValidationMessage For=@(() => vacante.Salario) />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Estado del puesto</label>
+                                <InputText class="form-control" @bind-Value="vacante.EstadoPuesto" />
+                                <ValidationMessage For=@(() => vacante.EstadoPuesto) />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <label>Cargo</label>
-                        <InputText class="form-control" @bind-Value="vacante.Cargo" />
-                        <ValidationMessage For=@(() => vacante.Cargo) />
+                        <label class="mb-2">Dia de inicio</label>
+                        <InputSelect class="form-control" @bind-Value="vacante.DiaSemanaInicio">
+                            <option value="" disabled selected>Selecione el dia...</option>
+                            <option value="Lunes">Lunes</option>
+                            <option value="Martes">Martes</option>
+                            <option value="Miercoles">Miercoles</option>
+                            <option value="Jueves">Jueves</option>
+                            <option value="Viernes">Viernes</option>
+                            <option value="Sabado">Sabado</option>
+                            <option value="Domingo">Domingo</option>
+                        </InputSelect>
+                        <ValidationMessage For=@(() => vacante.DiaSemanaInicio) />
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        <label>Salario</label>
-                        <InputText class="form-control" @bind-Value="vacante.Salario" />
-                        <ValidationMessage For=@(() => vacante.Salario) />
+                        <label class="mb-2">Dia fin</label>
+                        <InputSelect class="form-control" @bind-Value="vacante.DiaSemanaFin">
+                            <option value="" disabled selected>Selecione el dia...</option>
+                            <option value="Lunes">Lunes</option>
+                            <option value="Martes">Martes</option>
+                            <option value="Miercoles">Miercoles</option>
+                            <option value="Jueves">Jueves</option>
+                            <option value="Viernes">Viernes</option>
+                            <option value="Sabado">Sabado</option>
+                            <option value="Domingo">Domingo</option>
+                        </InputSelect>
+                        <ValidationMessage For=@(() => vacante.DiaSemanaFin) />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="mb-2">Hora inicio</label>
+                        <input type="time" value="@vacante.HoraInicio" @onchange="OnchageTimeinit" class="form-control" />
+                        <ValidationMessage For=@(() => vacante.HoraInicio) />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="mb-2">Hora fin</label>
+                        <input type="time" value="@vacante.HoraFin" @onchange="OnchageTimeEnd" class="form-control" />
+                        <ValidationMessage For=@(() => vacante.HoraFin) />
                     </div>
                 </div>
             </div>
@@ -65,14 +154,20 @@
     HttpClient http = new HttpClient();
     private Response response;
     List<Vacante> vacantes;
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    if (IdVacante !=null)
-    //    {
-    //        response = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes/{IdVacante}");
-    //        vacante = response.vacante[0];
-    //    }
-    //}
+    RootProvincia provincia;
+    ProvinciasRD provinciasRD = new ProvinciasRD();
+
+
+    void OnchageTimeinit(ChangeEventArgs args)
+    {
+        vacante.HoraInicio = Convert.ToDateTime(args.Value).ToString("HH:mm tt");
+    }
+    void OnchageTimeEnd(ChangeEventArgs args)
+    {
+        vacante.HoraFin = Convert.ToDateTime(args.Value).ToString("HH:mm tt");
+
+    }
+
 
     public async override Task SetParametersAsync(ParameterView parameters)
     {
@@ -83,8 +178,12 @@
             response = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes/{IdVacante}");
             vacante = response.vacante[0];
             StateHasChanged();
+            provincia = JsonConvert.DeserializeObject<RootProvincia>(provinciasRD.GetProvincias());
+            StateHasChanged();
         }
-        
+
+        provincia = JsonConvert.DeserializeObject<RootProvincia>(provinciasRD.GetProvincias());
+
     }
 
     async Task GuardarEditarVacantes()
@@ -107,13 +206,13 @@
         else
         {
             vacante.IdUsuarioCreacion = 3;
-            vacante.FechaCreacion = DateTime.Now.ToString("dd/MM/yyyy");
             string json = JsonConvert.SerializeObject(vacante);
             StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
             var responses = await http.PostAsync("https://localhost:44322/api/Vacantes", httpContent);
             response = await responses.Content.ReadFromJsonAsync<Response>();
             if (response.ok == true)
             {
+                vacante = new Vacante();
                 await Swal.FireAsync("¡Exito!", $"{response.mensaje}", "success");
             }
             else
@@ -121,7 +220,7 @@
                 await Swal.FireAsync("Oops...", $"{response.mensaje}", "error");
             }
 
-           
+
         }
     }
 
@@ -131,4 +230,17 @@
         public List<Vacante> vacante { get; set; }
         public string? mensaje { get; set; }
     }
+
+    public class Provincia
+    {
+        public int codigo { get; set; }
+        public string nombre { get; set; }
+    }
+
+    public class RootProvincia
+    {
+        public int status { get; set; }
+        public List<Provincia> data { get; set; }
+    }
+
 }
