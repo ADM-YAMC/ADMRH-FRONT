@@ -5,16 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Alertas\**" />
+    <Content Remove="Alertas\**" />
+    <EmbeddedResource Remove="Alertas\**" />
+    <None Remove="Alertas\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CurrieTechnologies.Razor.SweetAlert2" Version="5.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.13" PrivateAssets="all" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Radzen.Blazor" Version="3.16.0" />
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Alertas\" />
   </ItemGroup>
 
 </Project>

@@ -1,35 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yunior.moreta.G4S\\source\\repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj": {}
+    "C:\\Users\\Jacsel Guridi Diaz\\Desktop\\Projects\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yunior.moreta.G4S\\source\\repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj": {
+    "C:\\Users\\Jacsel Guridi Diaz\\Desktop\\Projects\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yunior.moreta.G4S\\source\\repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj",
+        "projectUniqueName": "C:\\Users\\Jacsel Guridi Diaz\\Desktop\\Projects\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj",
         "projectName": "ADMRH",
-        "projectPath": "C:\\Users\\yunior.moreta.G4S\\source\\repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj",
-        "packagesPath": "C:\\Users\\yunior.moreta.G4S\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yunior.moreta.G4S\\source\\repos\\ADMRH-FRONT\\ADMRH\\obj\\",
+        "projectPath": "C:\\Users\\Jacsel Guridi Diaz\\Desktop\\Projects\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj",
+        "packagesPath": "C:\\Users\\Jacsel Guridi Diaz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jacsel Guridi Diaz\\Desktop\\Projects\\ADMRH-FRONT\\ADMRH\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\yunior.moreta.G4S\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Jacsel Guridi Diaz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.telerik.com/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
