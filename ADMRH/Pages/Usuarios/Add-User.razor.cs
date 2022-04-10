@@ -18,6 +18,7 @@ namespace ADMRH.Pages.Usuarios
         async Task PostUsers()
         {
             usuario.Contraseña = "12345678";
+            usuario.IdCreacionUser = 13;
             string json = JsonConvert.SerializeObject(usuario);
             StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
             var responses = await Http.PostAsync("https://localhost:44322/api/Usuarios", httpContent);

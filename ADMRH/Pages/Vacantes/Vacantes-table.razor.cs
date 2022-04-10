@@ -22,21 +22,33 @@ namespace ADMRH.Pages.Vacantes
         [Parameter]
         public string IdUsuario { get; set; }
 
+        [Parameter]
+        public string IdVacante { get; set; }
         public bool loading { get; set; } = false;
-        protected override async Task OnInitializedAsync()
+        protected override async Task OnParametersSetAsync()
         {
             loading = true;
-            if (IdUsuario != null)
+            if (IdVacante != null)
             {
-                response = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes/user/{IdUsuario}");
+                response = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes/{IdVacante}");
                 vacantes = response.vacante;
                 loading = false;
-
             }
-            else {
-                response = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes");
-                vacantes = response.vacante;
-                loading = false;
+            else
+            {
+                if (IdUsuario != null)
+                {
+                    response = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes/user/{IdUsuario}");
+                    vacantes = response.vacante;
+                    loading = false;
+
+                }
+                else
+                {
+                    response = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes");
+                    vacantes = response.vacante;
+                    loading = false;
+                }
             }
         }
 

@@ -1,5 +1,7 @@
 ﻿using ADMRH_API.Models;
 using CurrieTechnologies.Razor.SweetAlert2;
+using Microsoft.AspNetCore.Components;
+using OfficeOpenXml;
 using Radzen.Blazor;
 using System;
 using System.Collections.Generic;
@@ -7,6 +9,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using ADMRH.Herpers;
+using System.Drawing;
 
 namespace ADMRH.Pages.Usuarios
 {
@@ -17,17 +21,54 @@ namespace ADMRH.Pages.Usuarios
         List<Usuario> usuarios;
         private ResponseUser response;
         RadzenDataGrid<Usuario> grid;
+        [Parameter]
+        public string IdUsuario { get; set; } = "0";
         public bool loading { get; set; } = false;
         protected override async Task OnInitializedAsync()
         {
             loading = true;
-            usuarios = await http.GetFromJsonAsync<List<Usuario>>("https://localhost:44322/api/Usuarios");
-            if (usuarios != null)
+            if (IdUsuario != "0")
             {
-                loading = false;
+                usuarios = await http.GetFromJsonAsync<List<Usuario>>($"https://localhost:44322/api/Usuarios/creacion/{Convert.ToInt32(IdUsuario)}");
+                if (usuarios != null)
+                {
+                    loading = false;
+                }
+            }
+            else
+            {
+                usuarios = await http.GetFromJsonAsync<List<Usuario>>("https://localhost:44322/api/Usuarios");
+                if (usuarios != null)
+                {
+                    loading = false;
+                }
             }
 
         }
+        async Task ExportarCSV()
+        {
+            var fecha = DateTime.Now.ToString("dd/MM/yyyy");
+
+            using (var package = new ExcelPackage())
+            {
+                var wordsheet = package.Workbook.Worksheets.Add("usuarios");
+                var tablebody = wordsheet.Cells["A1:A1"].LoadFromCollection(
+                    from f in usuarios select
+                    new {f.Nombre, f.Apellido, f.Cedula, f.Correo, f.Telefono, f.Departamento, f.Direccion, f.Rol }, true
+                    );
+                var header = wordsheet.Cells["A1:H1"];
+                wordsheet.DefaultColWidth = 30;
+                wordsheet.DefaultRowHeight = 50;
+                header.Style.Font.Bold = true;
+                header.Style.Font.Color.SetColor(Color.White);
+                header.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.DarkGrid;
+                header.Style.Fill.BackgroundColor.SetColor(Color.BlueViolet);
+                
+
+               await Js.GuardarComo($"usuarios_{fecha}.xlsx", package.GetAsByteArray());
+            }
+        }
+
 
         async Task ConfirmacionElimanarUsuario(Usuario usuario)
         {

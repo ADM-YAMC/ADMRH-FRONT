@@ -7,6 +7,11 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Json;
 using ADMRH_API.Models;
+using System.IO;
+using CsvHelper;
+using System.Globalization;
+using ADMRH.Herpers;
+using OfficeOpenXml;
 
 namespace ADMRH.Pages
 {
@@ -35,7 +40,18 @@ namespace ADMRH.Pages
         {
             await http.GetFromJsonAsync<Archivo>("");
         }
+        //async Task ExportarCSV()
+        //{
+           
 
+        //    using (var package = new ExcelPackage())
+        //    {
+        //        var wordsheet = package.Workbook.Worksheets.Add("usuarios");
+        //        var tablebody = wordsheet.Cells["A1:A1"].LoadFromCollection(
+        //            from f in us
+        //            );
+        //    }
+        //}
         public class ResponsecantidadTotal_UCV
         {
             public bool ok { get; set; }

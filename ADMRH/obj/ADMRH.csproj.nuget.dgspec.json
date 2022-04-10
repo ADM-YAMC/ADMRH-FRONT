@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yunior.moreta.G4S\\source\\repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj": {}
+    "C:\\Users\\Alex-carreras\\Source\\Repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yunior.moreta.G4S\\source\\repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj": {
+    "C:\\Users\\Alex-carreras\\Source\\Repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yunior.moreta.G4S\\source\\repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj",
+        "projectUniqueName": "C:\\Users\\Alex-carreras\\Source\\Repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj",
         "projectName": "ADMRH",
-        "projectPath": "C:\\Users\\yunior.moreta.G4S\\source\\repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj",
-        "packagesPath": "C:\\Users\\yunior.moreta.G4S\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yunior.moreta.G4S\\source\\repos\\ADMRH-FRONT\\ADMRH\\obj\\",
+        "projectPath": "C:\\Users\\Alex-carreras\\Source\\Repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj",
+        "packagesPath": "C:\\Users\\Alex-carreras\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Alex-carreras\\Source\\Repos\\ADMRH-FRONT\\ADMRH\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\yunior.moreta.G4S\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Alex-carreras\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -28,8 +28,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.telerik.com/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
@@ -47,9 +46,17 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[27.2.1, )"
+            },
             "CurrieTechnologies.Razor.SweetAlert2": {
               "target": "Package",
               "version": "[5.2.0, )"
+            },
+            "EPPlus": {
+              "target": "Package",
+              "version": "[5.8.4, )"
             },
             "Microsoft.AspNetCore.Components.WebAssembly": {
               "target": "Package",
@@ -86,7 +93,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Runtime.browser-wasm",
-              "version": "[5.0.15, 5.0.15]"
+              "version": "[5.0.13, 5.0.13]"
             }
           ],
           "frameworkReferences": {
@@ -94,7 +101,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

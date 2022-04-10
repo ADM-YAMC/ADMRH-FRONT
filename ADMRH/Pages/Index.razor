@@ -1,5 +1,6 @@
 ﻿@page "/home"
-
+@using ADMRH.Pages.Usuarios
+@inject IJSRuntime Js
 <h1 class="mt-5">Bienvenido</h1>
 @if (total_UCV != null)
 {
@@ -26,15 +27,7 @@
 
 }
 <div class="col pl-0 ml-0 pr-0 mr-0 mt-5">
-    <div class="row">
-        <div class="col">
-            <h2>Usuarios</h2>
-        </div>
-        <div class="col mb-3">
-            <button class="btn btn-success float-right">Exportar <i class="fas fa-file-excel"></i></button>
-        </div>
-    </div>
         <RadzenCard>
-            <ADMRH.Pages.Usuarios.Usuarios_table />
+            <Usuarios_table IdUsuario="0" />
         </RadzenCard>
 </div>

@@ -1,4 +1,5 @@
 ﻿@page "/vacantes-publicas/registro-candidato/{IdVacante:int}"
+@page "/candidatos/nuevo-candidato/{IdVacante:int}"
 @layout PublicLayout
 @inject HttpClient http
 @using Newtonsoft.Json
@@ -8,7 +9,7 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
         <RadzenCard class="m-3">
-           
+
             <EditForm Model="@candidate" OnValidSubmit="GuardarCandidato">
                 <DataAnnotationsValidator />
                 <RadzenFieldset>
@@ -16,6 +17,16 @@
                     <h1 class="d-inline pt-2">Registro de Candidato</h1>
                     <div class="row">
                         <div class="col-md-6">
+                            <div class="m-1 mb-3">
+                                <h4>Cédula</h4>
+                                <RadzenMask Mask="***-*******-*"
+                                            CharacterPattern="[0-9]"
+                                            Placeholder="Cedula"
+                                            Name="CitizenId" @bind-Value=@candidate.Cedula
+                                            Style="width: 100%;"
+                                            Change=@(args => VerificExit(args)) />
+                                <ValidationMessage For="@(()=> candidate.Cedula)" />
+                            </div>
                             <div class="m-1 mb-3">
                                 <h4>Nombre</h4>
                                 <RadzenTextBox @bind-Value="candidate.Nombre" Class="w-100" />
@@ -30,15 +41,6 @@
                                 <h4>Correo electrónico</h4>
                                 <RadzenTextBox @bind-Value="candidate.Correo" Class="w-100" />
                                 <ValidationMessage For="@(()=> candidate.Correo)" />
-                            </div>
-                            <div class="m-1 mb-3">
-                                <h4>Cédula</h4>
-                                <RadzenMask Mask="***-*******-*"
-                                            CharacterPattern="[0-9]"
-                                            Placeholder="Cedula"
-                                            Name="CitizenId" @bind-Value=@candidate.Cedula
-                                            Style="width: 100%;" />
-                                <ValidationMessage For="@(()=> candidate.Cedula)" />
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -100,6 +102,7 @@
     Archivo archivo = new Archivo();
     ArchivoTemp archivoTemp;
     ResponseC responseC;
+    List<Candidato> candidatosList;
     string cv, mensaje;
     bool estado = false;
 
@@ -113,7 +116,7 @@
         var buffers = new byte[imgFile.Size];
         await imgFile.OpenReadStream().ReadAsync(buffers);
         string imageType = imgFile.ContentType;
-        archivo.Cv = $"data:{imageType};base64,{Convert.ToBase64String(buffers)}";
+        archivo.FotoFrente = $"data:{imageType};base64,{Convert.ToBase64String(buffers)}";
         if (archivoTemp == null)
         {
             if (archivo.Cv != null && archivo.FotoFrente != null)
@@ -133,7 +136,7 @@
         var buffers = new byte[imgFile.Size];
         await imgFile.OpenReadStream().ReadAsync(buffers);
         string imageType = imgFile.ContentType;
-        archivo.FotoFrente = $"data:{imageType};base64,{Convert.ToBase64String(buffers)}";
+        archivo.Cv = $"data:{imageType};base64,{Convert.ToBase64String(buffers)}";
         if (archivoTemp == null)
         {
             if (archivo.Cv != null && archivo.FotoFrente != null)
@@ -145,6 +148,19 @@
         {
             await ConfirmacionSobrescribir();
         }
+    }
+
+    async Task VerificExit(string cedula)
+    {
+        candidatosList = await http.GetFromJsonAsync<List<Candidato>>($"https://localhost:44322/api/Candidatos/Cedula/{cedula}");
+        if (candidatosList.Count != 0)
+        {
+            candidate = candidatosList[0];
+            await Swal.FireAsync("Vaya", $"Hola {candidate.Nombre}, no puedes aplicar a mas de una vacante por mes...", "info");
+            Navigate.NavigateTo("/");
+        }
+
+
     }
 
     async Task GuardarArchivo()

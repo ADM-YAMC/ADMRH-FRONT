@@ -10,6 +10,7 @@ namespace ADMRH_API.Models
     {
         public int IdUsuario { get; set; }
         [Required(ErrorMessage ="El nombre es requerido...")]
+        public int? IdCreacionUser { get; set; }
         public string Nombre { get; set; }
         [Required(ErrorMessage = "El apellido es requerido...")]
         public string Apellido { get; set; }

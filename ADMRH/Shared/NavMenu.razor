@@ -11,7 +11,7 @@
         background: #023877;
         overflow-x: hidden;
         transition: 0.5s;
-        padding-top: 60px;
+        
         /*pointer-events: none;*/
     }
     .iconMC {
@@ -69,6 +69,18 @@
     .rz-navigation-item-wrapper-active:before {
         background-color: #006797 !important;
     }
+    .hid{
+        margin-left:2.4px;
+    }
+    .block{
+        margin-left:1rem;
+    }
+    .bloc{
+        height:60px;
+    }
+    .hiden{
+        height:100px;
+    }
 
 
     #main {
@@ -103,11 +115,15 @@
    
 <div id="mySidenav" class="sidenav">
 
-    @*<a href="#"><i style="display:inline" class="fas fa-home fa-1x"></i>  content</a>
-        <a href="#">content</a>*@
+    <div class="brand-container" style="z-index:990!important; margin-bottom:10px;">
+        <RadzenImage Path="https://scontent.fhex5-2.fna.fbcdn.net/v/t1.6435-9/49656237_941670379357742_8440506915926048768_n.png?_nc_cat=109&ccb=1-5&_nc_sid=174925&_nc_ohc=zkg8tIqNk7AAX-lbDzG&_nc_ht=scontent.fhex5-2.fna&oh=00_AT_NwEb1as807UsatEUq1utQLwGVqVTFHmOGGPVs3hZ4vQ&oe=62520EE2"
+                     Style="width: 50px; height:50px; margin-right: 10px; border-radius: 10px;  margin-top:8px;"
+                     class="@(cierre == true ? "block":"hid")"></RadzenImage>
+        <a hidden="@(!cierre)" class="navbar-brand text-white mt-4 pt-4">Just Quality HR</a>
+    </div>
     <a>
         <RadzenPanelMenu Style="width: 100%; overflow-y: hidden !important; background: #023877; ">
-            <RadzenPanelMenuItem Text="Inicio" Path="/" Icon="home"></RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="Inicio" Path="/home" Icon="home"></RadzenPanelMenuItem>
             <RadzenPanelMenuItem Text="Usuarios" Path="usuarios" Icon="account_circle"></RadzenPanelMenuItem>
             <RadzenPanelMenuItem Text="Candidatos" Path="candidatos" Icon="face"></RadzenPanelMenuItem>
             <RadzenPanelMenuItem Text="Vacantes" Path="vacantes" Icon="account_balance"></RadzenPanelMenuItem>
@@ -115,7 +131,7 @@
         </RadzenPanelMenu>
 
     </a>
-    <div style="height: 100px; width: 100%; background: transparent; bottom: 0px; right: 0px; position: absolute;">
+    <div class="@(cierre == true ? "bloc":"hiden")" style="width: 100%; background: transparent; bottom: 0px; right: 0px; position: absolute;">
         <div class="row">
             <div class="col-sm-9 text-white mb-2">
                 <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="40" height="40" class="rounded-circle cursor ml-2" />
@@ -141,8 +157,8 @@
         </div>
     </div>
     @*<div style="height: 40px; width: 100%; background: red; bottom: 0px; right: 0px; position: absolute;">
-       
-    </div>*@
+
+        </div>*@
 </div>
 
 

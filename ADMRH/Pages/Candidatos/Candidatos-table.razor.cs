@@ -3,124 +3,58 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net.Http.Json;
+using CurrieTechnologies.Razor.SweetAlert2;
+using Radzen.Blazor;
+using static ADMRH.Pages.Candidatos.RegistroCandidato;
 
 namespace ADMRH.Pages.Candidatos
 {
     public partial class Candidatos_table
     {
         List<Candidato> candidatos;
+        RadzenDataGrid<Candidato> radzenDataGrid;
+        public bool loading { get; set; }
+        ResponseC responseC;
         protected override async Task OnInitializedAsync()
         {
+            candidatos = await http.GetFromJsonAsync<List<Candidato>>("https://localhost:44322/api/Candidatos");
+        }
 
-            candidatos = new List<Candidato>()
+        async Task ConfirmacionElimanarCandidato(Candidato candidato)
+        {
+            var result = await Swal.FireAsync(new SweetAlertOptions
             {
-                new Candidato()
-                {
-                    Nombre = "Yunior",
-                    Apellido = "Moreta",
-                    Cedula = "9876545678",
-                    Direccion = "Bayaguana",
-                    Telefono = "987654567",
-                    Correo = "yunior@gmail.com"
-                },
-                 new Candidato()
-                {
-                    Nombre = "Yunior",
-                    Apellido = "Moreta",
-                    Cedula = "9876545678",
-                    Direccion = "Bayaguana",
-                    Telefono = "987654567",
-                    Correo = "yunior@gmail.com"
-                },
-                  new Candidato()
-                {
-                    Nombre = "Yunior",
-                    Apellido = "Moreta",
-                    Cedula = "9876545678",
-                    Direccion = "Bayaguana",
-                    Telefono = "987654567",
-                    Correo = "yunior@gmail.com"
-                },
-                   new Candidato()
-                {
-                    Nombre = "Yunior",
-                    Apellido = "Moreta",
-                    Cedula = "9876545678",
-                    Direccion = "Bayaguana",
-                    Telefono = "987654567",
-                    Correo = "yunior@gmail.com"
-                },
-                    new Candidato()
-                {
-                    Nombre = "Yunior",
-                    Apellido = "Moreta",
-                    Cedula = "9876545678",
-                    Direccion = "Bayaguana",
-                    Telefono = "987654567",
-                    Correo = "yunior@gmail.com"
-                },
-                     new Candidato()
-                {
-                    Nombre = "Yunior",
-                    Apellido = "Moreta",
-                    Cedula = "9876545678",
-                    Direccion = "Bayaguana",
-                    Telefono = "987654567",
-                    Correo = "yunior@gmail.com"
-                },
-                      new Candidato()
-                {
-                    Nombre = "Yunior",
-                    Apellido = "Moreta",
-                    Cedula = "9876545678",
-                    Direccion = "Bayaguana",
-                    Telefono = "987654567",
-                    Correo = "yunior@gmail.com"
-                },
-                       new Candidato()
-                {
-                    Nombre = "Yunior",
-                    Apellido = "Moreta",
-                    Cedula = "9876545678",
-                    Direccion = "Bayaguana",
-                    Telefono = "987654567",
-                    Correo = "yunior@gmail.com"
-                },
-                        new Candidato()
-                {
-                    Nombre = "Yunior",
-                    Apellido = "Moreta",
-                    Cedula = "9876545678",
-                    Direccion = "Bayaguana",
-                    Telefono = "987654567",
-                    Correo = "yunior@gmail.com"
-                },
+                Title = "¿Estas seguro?",
+                Text = "¿Estas seguro de que quieres eliminar el candidato?",
+                Icon = SweetAlertIcon.Warning,
+                ShowCancelButton = true,
+                ConfirmButtonText = "Si, Eliminar",
+                CancelButtonText = "No"
+            });
 
-            };
-
-
-            //var archivo = new Archivo()
-            //{
-            //    FotoFrente = "unll",
-            //    FotoPerfil = "dsd",
-            //    Cv = "sda"
-            //};
-
-            //var json = JsonConvert.SerializeObject(archivo);
-
-            //await http.PostAsJsonAsync<Archivo>("https://localhost:44322/api/Archivos", archivo);
-
-            //try
-            //{
-            //    files = await http.GetFromJsonAsync<Root>("https://localhost:44322/api/Archivos");
-            //    Console.WriteLine(files);
-            //}
-            //catch (Exception)
-            //{
-
-            //    throw;
-            //}
-
+            if (!string.IsNullOrEmpty(result.Value))
+            {
+                loading = true;
+                await deleteCandidato(candidato);
+            }
+        }
+        async Task deleteCandidato(Candidato candidato)
+        {
+            candidatos.Remove(candidato);
+            var responses = await http.DeleteAsync($"https://localhost:44322/api/Candidatos/{candidato.IdCandidato}");
+            responseC = await responses.Content.ReadFromJsonAsync<ResponseC>();
+            if (responseC.ok)
+            {
+                await Swal.FireAsync("¡Exito!", $"{responseC.message}", "success");
+            }
+            else
+            {
+                await Swal.FireAsync("Oops...", $"{responseC.message}", "error");
+            }
+            await radzenDataGrid.Reload();
+            if (responseC != null)
+                loading = false;
         }
     }
 }
