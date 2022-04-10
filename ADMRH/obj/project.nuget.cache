@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "HO5yRgHwaLp5WCt1DE5yAirOinBBW/gQWQzfLREkSbrc1Z6BwqauqYiJD9rLH5My7NXXBS/IkvU10YiJlKcHgg==",
+  "dgSpecHash": "IJCRm9ODrZoDysF9ZT6HUT1zkSi6FnmW/SfnW9Qsq4/yG6zZhhF+1iNgwtfzOFU9DtuEa+z6ISHMqlXvHYOzbw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Jacsel Guridi Diaz\\Desktop\\Projects\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Jacsel Guridi Diaz\\.nuget\\packages\\blazored.localstorage\\4.3.0-preview.1\\blazored.localstorage.4.3.0-preview.1.nupkg.sha512",
     "C:\\Users\\Jacsel Guridi Diaz\\.nuget\\packages\\currietechnologies.razor.sweetalert2\\5.2.0\\currietechnologies.razor.sweetalert2.5.2.0.nupkg.sha512",
     "C:\\Users\\Jacsel Guridi Diaz\\.nuget\\packages\\libsassbuilder\\2.0.1\\libsassbuilder.2.0.1.nupkg.sha512",
     "C:\\Users\\Jacsel Guridi Diaz\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.13\\microsoft.aspnetcore.authorization.5.0.13.nupkg.sha512",

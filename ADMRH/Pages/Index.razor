@@ -1,4 +1,6 @@
 ﻿@page "/home"
+@inject NavigationManager Navigate
+@inject ILocalStorageService localStorageService
 
 <h1 class="mt-5">Bienvenido</h1>
 @if (total_UCV != null)

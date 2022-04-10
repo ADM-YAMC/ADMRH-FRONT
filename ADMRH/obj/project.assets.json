@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "net5.0": {
+      "Blazored.LocalStorage/4.3.0-preview.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "5.0.5"
+        },
+        "compile": {
+          "lib/net5.0/Blazored.LocalStorage.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Blazored.LocalStorage.dll": {}
+        }
+      },
       "CurrieTechnologies.Razor.SweetAlert2/5.2.0": {
         "type": "package",
         "dependencies": {
@@ -382,6 +394,18 @@
       }
     },
     "net5.0/browser-wasm": {
+      "Blazored.LocalStorage/4.3.0-preview.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "5.0.5"
+        },
+        "compile": {
+          "lib/net5.0/Blazored.LocalStorage.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Blazored.LocalStorage.dll": {}
+        }
+      },
       "CurrieTechnologies.Razor.SweetAlert2/5.2.0": {
         "type": "package",
         "dependencies": {
@@ -763,6 +787,20 @@
     }
   },
   "libraries": {
+    "Blazored.LocalStorage/4.3.0-preview.1": {
+      "sha512": "QEmh/JjnrmA1ZDoRBNMCW+OOkIlGutzJzKLRFzJq9OC4JiLN2vMV1KgiukAp1Ti6BZz1cHz7eMehKTaBipOxPw==",
+      "type": "package",
+      "path": "blazored.localstorage/4.3.0-preview.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "blazored.localstorage.4.3.0-preview.1.nupkg.sha512",
+        "blazored.localstorage.nuspec",
+        "icon.png",
+        "lib/net5.0/Blazored.LocalStorage.dll",
+        "lib/net6.0/Blazored.LocalStorage.dll"
+      ]
+    },
     "CurrieTechnologies.Razor.SweetAlert2/5.2.0": {
       "sha512": "Zdb/4PjHFArctD3NiZREFi/VJ/9WszeapzZa7OSFULeTxWGwb5sGWYqqjdtF1b7mbk/1cQy4aXcmt6SH3VJjMA==",
       "type": "package",
@@ -1558,6 +1596,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Blazored.LocalStorage >= 4.3.0-preview.1",
       "CurrieTechnologies.Razor.SweetAlert2 >= 5.2.0",
       "Microsoft.AspNetCore.Components.WebAssembly >= 5.0.13",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 5.0.13",
@@ -1605,6 +1644,10 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "Blazored.LocalStorage": {
+            "target": "Package",
+            "version": "[4.3.0-preview.1, )"
+          },
           "CurrieTechnologies.Razor.SweetAlert2": {
             "target": "Package",
             "version": "[5.2.0, )"

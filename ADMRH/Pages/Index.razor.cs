@@ -20,6 +20,15 @@ namespace ADMRH.Pages
         {
             try
             {
+                var user = await localStorageService.GetItemAsync<UserClaims>("user");
+
+                if (user?.IdUsuario == default)
+                {
+                    await localStorageService.RemoveItemAsync("user");
+                    Navigate.NavigateTo("/login");
+                    return;
+                }
+
                 total_UCV = await http.GetFromJsonAsync<ResponsecantidadTotal_UCV>("https://localhost:44322/api/Usuarios/cantidadTotal_UCV");
             }
             catch (Exception)

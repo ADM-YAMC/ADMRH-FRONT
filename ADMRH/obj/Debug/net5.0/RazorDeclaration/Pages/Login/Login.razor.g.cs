@@ -124,8 +124,43 @@ using ADMRH.Pages.Loadings;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 17 "C:\Users\Jacsel Guridi Diaz\Desktop\Projects\ADMRH-FRONT\ADMRH\_Imports.razor"
+using Microsoft.AspNetCore.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 18 "C:\Users\Jacsel Guridi Diaz\Desktop\Projects\ADMRH-FRONT\ADMRH\_Imports.razor"
+using Blazored.LocalStorage;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 19 "C:\Users\Jacsel Guridi Diaz\Desktop\Projects\ADMRH-FRONT\ADMRH\_Imports.razor"
+using System.Text.Json;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "C:\Users\Jacsel Guridi Diaz\Desktop\Projects\ADMRH-FRONT\ADMRH\_Imports.razor"
+using System.Text;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "C:\Users\Jacsel Guridi Diaz\Desktop\Projects\ADMRH-FRONT\ADMRH\Pages\Login\Login.razor"
+using ADMRH.Pages.Vacantes;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(PublicLayout))]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/tg")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/login")]
     public partial class Login : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -134,16 +169,69 @@ using ADMRH.Pages.Loadings;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 23 "C:\Users\Jacsel Guridi Diaz\Desktop\Projects\ADMRH-FRONT\ADMRH\Pages\Login\Login.razor"
+#line 28 "C:\Users\Jacsel Guridi Diaz\Desktop\Projects\ADMRH-FRONT\ADMRH\Pages\Login\Login.razor"
        
-    void OnLogin(LoginArgs args)
+    public bool loading { get; set; }
+
+    protected override async Task OnInitializedAsync()
     {
-        // Log user logic
+        var user = await localStorageService.GetItemAsync<UserClaims>("user");
+
+        if (user != null)
+        {
+            await JSRuntime.InvokeVoidAsync("history.back");
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+    async void OnLogin(LoginArgs args)
+    {
+        loading = true;
+
+        var credentials = new
+        {
+            user = args.Username,
+            pass = args.Password
+        };
+
+        var userString = JsonSerializer.Serialize(credentials);
+        var requestContent = new StringContent(userString, Encoding.UTF8, "application/json");
+        var response = await http.PostAsync("https://localhost:44322/api/InitUser", requestContent);
+
+        var jsonData = await response.Content.ReadFromJsonAsync<Response>();
+
+        if (!jsonData.ok || jsonData.claims == null)
+        {
+            await localStorageService.RemoveItemAsync("user");
+            return;
+        }
+
+        await localStorageService.SetItemAsync("user", jsonData.claims);
+        navigation.NavigateTo($"/home");
+        loading = false;
+    }
+
+    async void OnLogOut()
+    {
+        await localStorageService.RemoveItemAsync("user");
+        navigation.NavigateTo($"/login");
+    }
+
+    public class Response
+    {
+        public bool ok { get; set; }
+        public UserClaims claims { get; set; }
+        public string mensaje { get; set; }
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ILocalStorageService localStorageService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigation { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient http { get; set; }
     }
 }
 #pragma warning restore 1591

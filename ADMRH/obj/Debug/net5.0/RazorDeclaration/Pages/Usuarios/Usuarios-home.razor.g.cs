@@ -124,6 +124,34 @@ using ADMRH.Pages.Loadings;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 17 "C:\Users\Jacsel Guridi Diaz\Desktop\Projects\ADMRH-FRONT\ADMRH\_Imports.razor"
+using Microsoft.AspNetCore.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 18 "C:\Users\Jacsel Guridi Diaz\Desktop\Projects\ADMRH-FRONT\ADMRH\_Imports.razor"
+using Blazored.LocalStorage;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 19 "C:\Users\Jacsel Guridi Diaz\Desktop\Projects\ADMRH-FRONT\ADMRH\_Imports.razor"
+using System.Text.Json;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "C:\Users\Jacsel Guridi Diaz\Desktop\Projects\ADMRH-FRONT\ADMRH\_Imports.razor"
+using System.Text;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/usuarios")]
     public partial class Usuarios_home : Microsoft.AspNetCore.Components.ComponentBase
     {
