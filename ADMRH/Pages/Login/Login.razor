@@ -3,14 +3,9 @@
 @layout PublicLayout
 @inject HttpClient http
 @inject NavigationManager navigation
-<<<<<<< HEAD
-@inject ILocalStorageService localStorageService 
-@inject IJSRuntime JSRuntime
-=======
 @inject ILocalStorageService localStorageService
 @inject IJSRuntime JSRuntime
 @inject SweetAlertService Swal;
->>>>>>> a5001a07adaa5f33667098832c471a1decf94ef3
 
 <div class="row d-flex px-3">
     <div class="col-xl-3 d-flex p-3"></div>
@@ -59,11 +54,6 @@
     </div>
 </div>
 
-<<<<<<< HEAD
-@code {
-    public bool loading { get; set; }
-
-=======
 @code { 
 
     public bool loading { get; set; }
@@ -71,7 +61,6 @@
     Response jsonData;
     CambioContraseña cambio = new CambioContraseña();
     ResponseUser responseUser;
->>>>>>> a5001a07adaa5f33667098832c471a1decf94ef3
     protected override async Task OnInitializedAsync()
     {
         var user = await localStorageService.GetItemAsync<UserClaims>("user");
@@ -82,49 +71,6 @@
         }
 
         await base.OnInitializedAsync();
-<<<<<<< HEAD
-    }
-
-    async void OnLogin(LoginArgs args)
-    {
-        loading = true;
-
-        var credentials = new
-        {
-            user = args.Username,
-            pass = args.Password
-        };
-
-        var userString = JsonSerializer.Serialize(credentials);
-        var requestContent = new StringContent(userString, Encoding.UTF8, "application/json");
-        var response = await http.PostAsync("https://localhost:44322/api/InitUser", requestContent);
-
-        var jsonData = await response.Content.ReadFromJsonAsync<Response>();
-
-        if (!jsonData.ok || jsonData.claims == null)
-        {
-            await localStorageService.RemoveItemAsync("user");
-            return;
-        }
-
-        await localStorageService.SetItemAsync("user", jsonData.claims);
-        navigation.NavigateTo($"/home");
-        loading = false;
-    }
-
-    async void OnLogOut()
-    {
-        await localStorageService.RemoveItemAsync("user");
-        navigation.NavigateTo($"/login");
-    }
-
-    public class Response
-    {
-        public bool ok { get; set; }
-        public UserClaims claims { get; set; }
-        public string mensaje { get; set; }
-=======
->>>>>>> a5001a07adaa5f33667098832c471a1decf94ef3
     }
 
     async void OnLogin(LoginArgs args)

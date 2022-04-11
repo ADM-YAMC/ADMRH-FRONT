@@ -13,10 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="Blazored.LocalStorage" Version="4.3.0-preview.1" />
-<<<<<<< HEAD
-=======
     <PackageReference Include="CsvHelper" Version="27.2.1" />
->>>>>>> a5001a07adaa5f33667098832c471a1decf94ef3
     <PackageReference Include="CurrieTechnologies.Razor.SweetAlert2" Version="5.2.0" />
     <PackageReference Include="EPPlus" Version="5.8.4" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.13" />
