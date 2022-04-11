@@ -107,7 +107,7 @@
         }
 
 .rz-button.btn-primary:not(.rz-state-disabled):hover:not(:active), .rz-paginator-element.btn-primary:not(.rz-state-disabled):hover:not(:active) {
-    background-color: #376df5;
+    background-color: #023877;
     color: #ffffff;
 }
 
@@ -117,7 +117,7 @@
 }
 
 .rz-button.btn-secondary:not(.rz-state-disabled):hover:not(:active), .rz-paginator-element.btn-secondary:not(.rz-state-disabled):hover:not(:active) {
-    background-color: #376df5;
+    background-color: #023877;
     color: #ffffff;
 }
 

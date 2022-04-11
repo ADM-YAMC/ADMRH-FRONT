@@ -1,8 +1,8 @@
 ﻿@page "/usuarios/view-user/{IdUsuario}"
 @using ADMRH.Pages.Vacantes
 @inject SweetAlertService Swal;
-
-
+@inject ILocalStorageService localStorageService
+@inject NavigationManager navigate
 <RadzenCard class="mt-5">
     <div class="row">
         <div class="col">
@@ -10,6 +10,10 @@
         </div>
         <div class="col-sm-2">
             <button class="btn btn-warning d-inline mr-1 mt-1 float-right" @onclick="@(()=> OpenEdit =! OpenEdit)"><i class="fas fa-user-edit"></i></button>
+            @if (OpenEdit)
+            {
+                <button class="btn btn-primary d-inline mr-2 mt-1 float-right" data-bs-toggle="modal" @onclick="OnInitModal" data-bs-target="#ChangePassModal"><i class="fas fa-key"></i></button>
+            }
         </div>
     </div>
     <EditForm Model="usuario">
@@ -110,19 +114,56 @@
 <RadzenCard class="mt-4">
     <h2>Usuarios gestionados</h2>
     <div class="row border-top">
-        <div class="col">
-
+        <div class="col pt-3">
+            <Usuarios_table IdUsuario="@idUsuario" />
         </div>
     </div>
 </RadzenCard>
 <RadzenCard class="mt-4">
     <h2>Vacantes creadas</h2>
     <div class="row border-top">
-        <div class="col pt-2">
+        <div class="col pt-3">
             <Vacantes_table IdUsuario="@idUsuario"></Vacantes_table>
         </div>
     </div>
 </RadzenCard>
+
+
+<!-- Modal -->
+<div class="modal fade" id="ChangePassModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="ModalLabel">Cambiar contraseña</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <EditForm Model="@cambio" OnValidSubmit="OnPutPassAsync">
+                    <DataAnnotationsValidator />
+                    <div class="form-group mb-1">
+                        <label class="mb-2">Nueva contraseña</label>
+                        <InputText type="password" placeholder="Escribe la nueva contraseña..." @bind-Value="cambio.nuevaContraseña" class="form-control"></InputText>
+                        <ValidationMessage For="@(()=> cambio.nuevaContraseña)" />
+                    </div>
+                        <div class="form-check form-switch mb-3 ml-3">
+                            @if (usuario != null)
+                            {
+                                <input class="form-check-input" @onclick="toggle" type="checkbox" @bind="@boolvalue" style="height:20px; width:35px;" role="switch" id="flexSwitchCheckChecked">
+                            }
+                            <label class="form-check-label ml-2 pt-1"  for="flexSwitchCheckChecked">Pedir cambio al momento de inicio</label>
+                        </div>
+                       
+                   
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+                    </div>
+                </EditForm>
+            </div>
+            
+        </div>
+    </div>
+</div>
 <style>
     .img {
         width: 100%;

@@ -3,31 +3,75 @@
 @layout PublicLayout
 @inject HttpClient http
 @inject NavigationManager navigation
+<<<<<<< HEAD
 @inject ILocalStorageService localStorageService 
 @inject IJSRuntime JSRuntime
+=======
+@inject ILocalStorageService localStorageService
+@inject IJSRuntime JSRuntime
+@inject SweetAlertService Swal;
+>>>>>>> a5001a07adaa5f33667098832c471a1decf94ef3
 
 <div class="row d-flex px-3">
     <div class="col-xl-3 d-flex p-3"></div>
     <div class="col-xl-6 d-flex p-3">
         <RadzenCard Style="width: 100%;">
-            <h2 class="mb-4">Inicia Sesión</h2>
-            <RadzenTemplateForm Data=@("Login")>
-                <RadzenLogin
-                    LoginText="Acceder"
-                    UserText="Usuario"
-                    PasswordText="Contraseña"
-                    AllowRegister="false"
-                    AllowResetPassword="false"
-                    Login=@(args => OnLogin(args))
-                />
-            </RadzenTemplateForm>
+            @if (!pedirCambio)
+            {
+                <h2 class="mb-4">Inicia Sesión</h2>
+                <RadzenTemplateForm Data=@("Login")>
+                    <RadzenLogin LoginText="Acceder"
+                                 UserText="Usuario"
+                                 PasswordText="Contraseña"
+                                 AllowRegister="false"
+                                 AllowResetPassword="false"
+                                 Login=@(args => OnLogin(args)) />
+                </RadzenTemplateForm>
+            }
+            else
+            {
+                <h2 class="mb-4 text-center">Cambio de contraseña</h2>
+                if (jsonData != null)
+                {
+                    <h4 class="mb-4">Hola @(jsonData.claims.Nombre). Debes de cambiar tu contraseña antes de ingresar al sistema.</h4>
+                }
+                <EditForm Model="@cambio" OnValidSubmit="OnPutAsync">
+                    <DataAnnotationsValidator />
+                    <div class="form-group">
+                        <label>Antigua contraseña</label>
+                        <InputText type="password" placeholder="Escribe la antigua contraseña..." @bind-Value="cambio.viejaContraseña" class="form-control"></InputText>
+                        <ValidationMessage For="@(()=> cambio.viejaContraseña)" />
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <InputText type="password" placeholder="Escribe la nueva contraseña..." @bind-Value="cambio.nuevaContraseña" class="form-control"></InputText>
+                        <ValidationMessage For="@(()=> cambio.nuevaContraseña)" />
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <InputText type="password" placeholder="Repita la contraseña..." @bind-Value="cambio.rnuevaContraseña" class="form-control"></InputText>
+                        <ValidationMessage For="@(()=> cambio.rnuevaContraseña)" />
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">Actualizar</button>
+                </EditForm>
+            }
         </RadzenCard>
     </div>
 </div>
 
+<<<<<<< HEAD
 @code {
     public bool loading { get; set; }
 
+=======
+@code { 
+
+    public bool loading { get; set; }
+    public bool pedirCambio { get; set; }
+    Response jsonData;
+    CambioContraseña cambio = new CambioContraseña();
+    ResponseUser responseUser;
+>>>>>>> a5001a07adaa5f33667098832c471a1decf94ef3
     protected override async Task OnInitializedAsync()
     {
         var user = await localStorageService.GetItemAsync<UserClaims>("user");
@@ -38,6 +82,7 @@
         }
 
         await base.OnInitializedAsync();
+<<<<<<< HEAD
     }
 
     async void OnLogin(LoginArgs args)
@@ -78,5 +123,108 @@
         public bool ok { get; set; }
         public UserClaims claims { get; set; }
         public string mensaje { get; set; }
+=======
+>>>>>>> a5001a07adaa5f33667098832c471a1decf94ef3
     }
+
+    async void OnLogin(LoginArgs args)
+    {
+        loading = true;
+
+        var credentials = new
+        {
+            user = args.Username,
+            pass = args.Password
+        };
+
+        var userString = JsonSerializer.Serialize(credentials);
+        var requestContent = new StringContent(userString, Encoding.UTF8, "application/json");
+        var response = await http.PostAsync("https://localhost:44322/api/InitUser", requestContent);
+
+        jsonData = await response.Content.ReadFromJsonAsync<Response>();
+
+        if (!jsonData.ok || jsonData.claims == null)
+        {
+            await localStorageService.RemoveItemAsync("user");
+            await Swal.FireAsync("Oops...", $"{jsonData.mensaje}", "error");
+            return;
+        }
+        else {
+            if (jsonData.claims.PCambio==1)
+            {
+                pedirCambio = true;
+                StateHasChanged();
+            }
+            else
+            {
+                await localStorageService.SetItemAsync("user", jsonData.claims);
+                navigation.NavigateTo($"/home");
+                loading = false;
+            }
+        }
+    }
+
+    async void OnLogOut()
+    {
+        await localStorageService.RemoveItemAsync("user");
+        navigation.NavigateTo($"/login");
+    }
+    async Task OnPutAsync()
+    {
+        if (cambio.nuevaContraseña == cambio.rnuevaContraseña)
+        {
+            cambio.Estado = 0;
+            string json = JsonSerializer.Serialize(cambio);
+            StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            var responses = await http.PutAsync($"https://localhost:44322/api/Usuarios/cambioContraseña/{jsonData.claims.IdUsuario}", httpContent);
+            responseUser = await responses.Content.ReadFromJsonAsync<ResponseUser>();
+            if (responseUser.ok == true)
+            {
+                await Swal.FireAsync("¡Exito!", $"{responseUser.mensaje}", "success");
+                await localStorageService.SetItemAsync("user", jsonData.claims);
+                navigation.NavigateTo($"/home");
+                loading = false;
+            }
+            else
+            {
+                await Swal.FireAsync("Oops...", $"{responseUser.mensaje}", "error");
+                loading = false;
+            }
+        }
+        else
+        {
+            await Swal.FireAsync("Oops...", $"Las contrañena no coinciden...", "error");
+            loading = false;
+        }
+    }
+
+
+    public class ResponseUser
+    {
+        public bool ok { get; set; }
+        public string mensaje { get; set; }
+    }
+
+    public class Response
+    {
+        public bool ok { get; set; }
+        public UserClaims claims { get; set; }
+        public string mensaje { get; set; }
+    }
+
+
+    //public class User
+    //{
+    //    public int IdUsuario { get; set; }
+    //    public string Nombre { get; set; }
+    //    public string Apellido { get; set; }
+    //    public string Cedula { get; set; }
+    //    public string Telefono { get; set; }
+    //    public string Departamento { get; set; }
+    //    public string Direccion { get; set; }
+    //    public string Rol { get; set; }
+    //    public string Correo { get; set; }
+    //}
+
+
 }

@@ -1,4 +1,5 @@
-﻿using ADMRH_API.Models;
+﻿using ADMRH.Models;
+using ADMRH_API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace ADMRH.Pages.Bolsa
     {
         ResponseV response;
         public bool loading { get; set; }
+        public bool filterAlert { get; set; }
+        public string Buscar { get; set; }
         protected override async Task OnInitializedAsync()
         {
             loading = true;
@@ -18,6 +21,11 @@ namespace ADMRH.Pages.Bolsa
             if (response != null)
             {
                 loading = false;
+            }
+            var user = await localStorageService.GetItemAsync<UserClaims>("user");
+            if (user?.IdUsuario != default)
+            {
+                Navigate.NavigateTo("/home");
             }
 
         }
@@ -27,6 +35,20 @@ namespace ADMRH.Pages.Bolsa
             Navigate.NavigateTo($"vacantes-publicas/registro-candidato/{idVacante}");
         }
 
+        public bool IsVisible(Vacante  _vacante)
+        {
+            if (string.IsNullOrEmpty(Buscar))
+                return true;
+            if (_vacante.Nombre.ToString().Contains(Buscar, StringComparison.OrdinalIgnoreCase))
+                return true;
+            if (_vacante.Provincia.ToString().Contains(Buscar, StringComparison.OrdinalIgnoreCase))
+                return true;
+            if (_vacante.Cargo.ToString().Contains(Buscar, StringComparison.OrdinalIgnoreCase))
+                return true;
+            if (_vacante.EstadoPuesto.ToString().Contains(Buscar, StringComparison.OrdinalIgnoreCase))
+                return true;
+            return false;
+        }
         public class ResponseV
         {
             public bool ok { get; set; }

@@ -2,7 +2,7 @@
 @layout PublicLayout
 @inject NavigationManager Navigate
 @inject HttpClient http
-
+@inject ILocalStorageService localStorageService
 <style>
     .content-card {
         display: grid;
@@ -10,27 +10,44 @@
         grid-auto-rows: 27rem;
         grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
     }
-    .div-description{
-        height:100px;
+
+    .div-description {
+        height: 100px;
     }
-    .div-basic-info{
+
+    .div-basic-info {
         height: 50px;
     }
+
     .div-basic-infov {
         height: 70px;
     }
-    .card-content{
-        border-radius:5px;
-        height:424px;
+
+    .card-content {
+        border-radius: 5px;
+        height: 424px;
     }
 </style>
-<h1 class="mt-2 ml-4">Bolsa de Empleos</h1>
+
+
 <div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="mt-2 ml-4">Bolsa de Empleos</h1>
+        </div>
+        <div class="col-sm-4">
+            <input placeholder="Filtrar por: Nombre, cargo o provincia..." class="form-control mt-3 mr-5" @bind="Buscar"
+                   @bind:event="oninput" />
+        </div>
+    </div>
     <div class="content-card px-3">
         @if (response != null)
         {
             @foreach (var item in response.vacante)
             {
+                if (!IsVisible(item))
+                    continue;
+
                 <div class="card-content border text-center">
                     <div class="col div-basic-info text-center text-white" style="background: #023877; border-top-left-radius:5px; border-top-right-radius:5px;">
                         <h4 class="pt-2" style="color:aliceblue;">@item.Nombre</h4>
@@ -38,28 +55,28 @@
                     <div class="col div-basic-info border-top text-center">
                         <h2 class="pt-2">@item.Provincia</h2>
                     </div>
-                     <div class="col div-description border-top">
+                    <div class="col div-description border-top">
                         <p class="pt-1">@item.Descripcion</p>
                     </div>
-                     <div class="col div-basic-info border-top">
-                         <label style="text-align:center" class="pt-1">Tipo de contrato</label>
-                         <p class="pt-1"><b>@item.EstadoPuesto</b></p>
-                     </div>
-                     <div class="col div-basic-infov border-top">
-                         <label style="text-align:center" class="pt-1 text-center">Horario</label>
-                         <p class="pt-1"><b>De @item.DiaSemanaInicio a @item.DiaSemanaFin de @item.HoraInicio a @item.HoraFin</b></p>
-                     </div>
-                     <div class="col div-basic-info border-top">
-                         <label style="text-align:center" class="pt-1 text-center">Fecha de publicacion</label>
-                         <p class="pt-1"><b>@Convert.ToDateTime(item.FechaCreacion).ToString("dddd, dd MMMM yyyy")</b></p>
-                     </div>
-                     <div class="col div-basic-info border-top">
-                         <RadzenButton Click=@(args => ApplyJob(item.IdVacante))
-                                       Text="Aplicar"
-                                       Icon="add_circle_outline"
-                                       ButtonStyle="ButtonStyle.Secondary"
-                                       Style="width:100%; margin-top:7px;"/>
-                     </div>
+                    <div class="col div-basic-info border-top">
+                        <label style="text-align:center" class="pt-1">Tipo de contrato</label>
+                        <p class="pt-1"><b>@item.EstadoPuesto</b></p>
+                    </div>
+                    <div class="col div-basic-infov border-top">
+                        <label style="text-align:center" class="pt-1 text-center">Horario</label>
+                        <p class="pt-1"><b>De @item.DiaSemanaInicio a @item.DiaSemanaFin de @item.HoraInicio a @item.HoraFin</b></p>
+                    </div>
+                    <div class="col div-basic-info border-top">
+                        <label style="text-align:center" class="pt-1 text-center">Fecha de publicacion</label>
+                        <p class="pt-1"><b>@Convert.ToDateTime(item.FechaCreacion).ToString("dddd, dd MMMM yyyy")</b></p>
+                    </div>
+                    <div class="col div-basic-info border-top">
+                        <RadzenButton Click=@(args => ApplyJob(item.IdVacante))
+                                      Text="Aplicar"
+                                      Icon="add_circle_outline"
+                                      ButtonStyle="ButtonStyle.Secondary"
+                                      Style="width:100%; margin-top:7px;" />
+                    </div>
                 </div>
             }
         }
@@ -69,26 +86,26 @@
         }
 
         @*<RadzenCard class="m-3">
-            <div class="d-flex flex-row justify-content-between">
-                <div>
+                <div class="d-flex flex-row justify-content-between">
                     <div>
-                        <div class="mt-3">Vacante</div>
-                        <b>@item.Nombre</b>
-                        <div class="mt-3">Departamento</div>
-                        <b>@item.Departamento</b>
-                        <div class="mt-3">Descripcion del puesto</div>
-                        <b>@item.Descripcion</b>
+                        <div>
+                            <div class="mt-3">Vacante</div>
+                            <b>@item.Nombre</b>
+                            <div class="mt-3">Departamento</div>
+                            <b>@item.Departamento</b>
+                            <div class="mt-3">Descripcion del puesto</div>
+                            <b>@item.Descripcion</b>
+                        </div>
+                        <br />
+                        <div><small class="mt-5">@Convert.ToDateTime(item.FechaCreacion).ToString("dddd, dd MMMM yyyy")</small></div>
                     </div>
-                    <br />
-                    <div><small class="mt-5">@Convert.ToDateTime(item.FechaCreacion).ToString("dddd, dd MMMM yyyy")</small></div>
+                    <div>
+                        <RadzenButton Click=@(args => ApplyJob(item.IdVacante))
+                                      Text="Aplicar"
+                                      Icon="add_circle_outline"
+                                      ButtonStyle="ButtonStyle.Secondary" />
+                    </div>
                 </div>
-                <div>
-                    <RadzenButton Click=@(args => ApplyJob(item.IdVacante))
-                                  Text="Aplicar"
-                                  Icon="add_circle_outline"
-                                  ButtonStyle="ButtonStyle.Secondary" />
-                </div>
-            </div>
-        </RadzenCard>*@
+            </RadzenCard>*@
     </div>
 </div>
