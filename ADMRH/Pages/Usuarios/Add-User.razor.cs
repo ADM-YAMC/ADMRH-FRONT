@@ -14,11 +14,40 @@ namespace ADMRH.Pages.Usuarios
     {
         Usuario usuario = new Usuario();
         private BasicResponse response;
+        UserClaims userClaims;
         //EnviarCorreo correo = new EnviarCorreo();
+
+        protected override async Task OnInitializedAsync()
+        {
+            try
+            {
+                userClaims = await localStorageService.GetItemAsync<UserClaims>("user");
+                if (userClaims?.IdUsuario == default)
+                {
+                    await localStorageService.RemoveItemAsync("user");
+                    Navigate.NavigateTo("/login");
+                    return;
+                }
+                else
+                {
+                    if (userClaims?.Rol== "Analista")
+                    {
+                        Navigate.NavigateTo("/home");
+                        return;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
         async Task PostUsers()
         {
-            usuario.Contraseña = "12345678";
-            usuario.IdCreacionUser = 13;
+            Random pass = new Random();
+           var newPass = pass.Next(10000000, 999999999);
+            usuario.Contraseña = newPass.ToString();
+            usuario.PCambio = 1;
+            usuario.IdCreacionUser = userClaims?.IdUsuario;
             string json = JsonConvert.SerializeObject(usuario);
             StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
             var responses = await Http.PostAsync("https://localhost:44322/api/Usuarios", httpContent);

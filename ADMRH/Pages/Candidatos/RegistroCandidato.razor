@@ -5,6 +5,7 @@
 @using Newtonsoft.Json
 @inject SweetAlertService Swal;
 @inject NavigationManager Navigate;
+@inject ILocalStorageService localStorageService
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
@@ -105,10 +106,24 @@
     List<Candidato> candidatosList;
     string cv, mensaje;
     bool estado = false;
+    UserClaims userClaims;
 
     [Parameter]
     public int IdVacante { get; set; }
 
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            userClaims = await localStorageService.GetItemAsync<UserClaims>("user");
+            StateHasChanged();
+        }
+        catch (Exception)
+        {
+
+
+        }
+    }
 
     async Task OnFileInputChangeFoto(InputFileChangeEventArgs e)
     {
@@ -157,7 +172,7 @@
         {
             candidate = candidatosList[0];
             await Swal.FireAsync("Vaya", $"Hola {candidate.Nombre}, no puedes aplicar a mas de una vacante por mes...", "info");
-            Navigate.NavigateTo("/");
+            Navigate.NavigateTo("/", forceLoad:true);
         }
 
 
@@ -232,7 +247,7 @@
             archivoTemp = null;
             archivo = new Archivo();
             estado = false;
-            Navigate.NavigateTo("vacantes-publicas");
+            Navigate.NavigateTo("/");
             await Swal.FireAsync("¡Exito!", $"{responseC.message}", "success");
         }
         else
@@ -244,24 +259,7 @@
     {
         public bool ok { get; set; }
         public string message { get; set; }
-    }
-    void OnCreationDateChange(DateTime value)
-    {
-        //
+        public Candidato? candidatos { get; set; }
     }
 
-    void OnError()
-    {
-        // pop up an error notification
-    }
-
-    void Submit()
-    {
-        // submit action
-    }
-
-    void Cancel()
-    {
-        // cancel action
-    }
 }

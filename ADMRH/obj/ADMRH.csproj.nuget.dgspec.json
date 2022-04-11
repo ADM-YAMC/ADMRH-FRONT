@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alex-carreras\\Source\\Repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj": {}
+    "C:\\Users\\Alex-carreras\\source\\repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alex-carreras\\Source\\Repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj": {
+    "C:\\Users\\Alex-carreras\\source\\repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alex-carreras\\Source\\Repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj",
+        "projectUniqueName": "C:\\Users\\Alex-carreras\\source\\repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj",
         "projectName": "ADMRH",
-        "projectPath": "C:\\Users\\Alex-carreras\\Source\\Repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj",
+        "projectPath": "C:\\Users\\Alex-carreras\\source\\repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj",
         "packagesPath": "C:\\Users\\Alex-carreras\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alex-carreras\\Source\\Repos\\ADMRH-FRONT\\ADMRH\\obj\\",
+        "outputPath": "C:\\Users\\Alex-carreras\\source\\repos\\ADMRH-FRONT\\ADMRH\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -46,6 +46,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Blazored.LocalStorage": {
+              "target": "Package",
+              "version": "[4.3.0-preview.1, )"
+            },
             "CsvHelper": {
               "target": "Package",
               "version": "[27.2.1, )"

@@ -7,6 +7,8 @@ using System.Net.Http.Json;
 using CurrieTechnologies.Razor.SweetAlert2;
 using Radzen.Blazor;
 using static ADMRH.Pages.Candidatos.RegistroCandidato;
+using ADMRH.Herpers;
+using ADMRH.Models;
 
 namespace ADMRH.Pages.Candidatos
 {
@@ -16,9 +18,11 @@ namespace ADMRH.Pages.Candidatos
         RadzenDataGrid<Candidato> radzenDataGrid;
         public bool loading { get; set; }
         ResponseC responseC;
+        UserClaims userClaims;
         protected override async Task OnInitializedAsync()
         {
             candidatos = await http.GetFromJsonAsync<List<Candidato>>("https://localhost:44322/api/Candidatos");
+            userClaims = await localStorageService.GetItemAsync<UserClaims>("user");
         }
 
         async Task ConfirmacionElimanarCandidato(Candidato candidato)
@@ -56,5 +60,28 @@ namespace ADMRH.Pages.Candidatos
             if (responseC != null)
                 loading = false;
         }
+
+      
+        //public async Task<bool> IsAutorized()
+        //{
+        //    try
+        //    {
+        //        userClaims = await localStorageService.GetItemAsync<UserClaims>("user");
+        //        Console.WriteLine(userClaims.Rol);
+        //        if (userClaims?.Rol == "Administrador")
+        //        {
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return true;
+        //    }
+
+        //}
     }
 }

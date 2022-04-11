@@ -7,6 +7,7 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
+      "Blazored.LocalStorage.dll": "sha256-wcZwSVmBqqmGpasdzHupYysumx57oDldw\/ZabFIQ+7Y=",
       "CsvHelper.dll": "sha256-NsX0JTLefBulFJuOOQ7a5NES1\/0JroLi6pnAfNlYW04=",
       "CurrieTechnologies.Razor.SweetAlert2.dll": "sha256-DHtYUWeKljMwGFXeSAfErjDpuB4X8cJ1uEQj7Q86DJw=",
       "EPPlus.dll": "sha256-qSWi6pa8w77wqs94fAthwOis8XAAuPZy8h9gi4UmWLE=",
@@ -206,11 +207,11 @@
       "mscorlib.dll": "sha256-0qsbc1acYr3S6P7t9gSYyghOhMVs3CTJ9ukQ1VXqksY=",
       "netstandard.dll": "sha256-4Ejn1oHpeqmTQlJx7Kjuipn0ZVOoG0hGncN+9qyL1lo=",
       "System.Private.CoreLib.dll": "sha256-7n\/jioZu+\/2tD7v1RgjTTrBrviX+kVwPFGJ\/JBsHQGA=",
-      "ADMRH.dll": "sha256-qrKPuZqu1bWWGFArvQ5hqCFVbh2aMtQJLgRJi0b54pI="
+      "ADMRH.dll": "sha256-VUgVWffb2MtDxliQNX8HV1P+YqHkgLeV6UcSItN6ZAY="
     },
     "lazyAssembly": null,
     "pdb": {
-      "ADMRH.pdb": "sha256-DTWGxmcmtDZ8QA2287ff\/9RjJI2yfyae4lYXLd6gGbQ="
+      "ADMRH.pdb": "sha256-hMMMUYNVGj8pbJy3uNwSi8NllDohFgyJNoJ307fIS\/A="
     },
     "runtime": {
       "dotnet.timezones.blat": "sha256-Uv0JiOiPEvlGxygIhcdY8XYm\/Nt+zgVckKrqB2uih0w=",

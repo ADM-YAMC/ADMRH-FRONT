@@ -2007,7 +2007,6 @@ C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\build-gz\
 C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\build-gz\0i8cfeXR.gz
 C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\build-gz\+dYBG4k3.gz
 C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\build-gz\OwjlzVmB.gz
-C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\build-gz\uHDS1JI9.gz
 C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\staticwebassets\ADMRH.StaticWebAssets.Manifest.cache
 C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\staticwebassets\ADMRH.StaticWebAssets.xml
 C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
@@ -2041,3 +2040,7 @@ C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\bin\Debug\net5.0\wwwroot\_
 C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\bin\Debug\net5.0\wwwroot\_framework\CsvHelper.dll
 C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\ADMRH.csproj.AssemblyReference.cache
 C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\build-gz\PQ9jYo6m.gz
+C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\bin\Debug\net5.0\wwwroot\_framework\Blazored.LocalStorage.dll.gz
+C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\bin\Debug\net5.0\wwwroot\_framework\Blazored.LocalStorage.dll
+C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\build-gz\SiULm6hu.gz
+C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\obj\Debug\net5.0\build-gz\L7iVZir8.gz

@@ -4,6 +4,7 @@
 @using Newtonsoft.Json
 @inject SweetAlertService Swal;
 @using System.IO;
+@inject ILocalStorageService localStorageService
 
 <div class="container-lg mt-5">
     <RadzenCard>
@@ -27,7 +28,7 @@
                             {
                                 foreach (var item in provincia.data)
                                 {
-                                   <option value="@item.nombre">@item.nombre</option>
+                                    <option value="@item.nombre">@item.nombre</option>
                                 }
                             }
                         </InputSelect>
@@ -156,7 +157,7 @@
     List<Vacante> vacantes;
     RootProvincia provincia;
     ProvinciasRD provinciasRD = new ProvinciasRD();
-
+    UserClaims userClaims;
 
     void OnchageTimeinit(ChangeEventArgs args)
     {
@@ -171,24 +172,33 @@
 
     public async override Task SetParametersAsync(ParameterView parameters)
     {
-        await base.SetParametersAsync(parameters);
-        IdVacante = IdVacante ?? 0;
-        if (IdVacante !=0)
+        try
         {
-            response = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes/{IdVacante}");
-            vacante = response.vacante[0];
-            StateHasChanged();
-            provincia = JsonConvert.DeserializeObject<RootProvincia>(provinciasRD.GetProvincias());
-            StateHasChanged();
-        }
+            await base.SetParametersAsync(parameters);
+            IdVacante = IdVacante ?? 0;
+            if (IdVacante != 0)
+            {
+                response = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes/{IdVacante}");
+                vacante = response.vacante[0];
+                StateHasChanged();
+                provincia = JsonConvert.DeserializeObject<RootProvincia>(provinciasRD.GetProvincias());
+                StateHasChanged();
+            }
 
-        provincia = JsonConvert.DeserializeObject<RootProvincia>(provinciasRD.GetProvincias());
+            provincia = JsonConvert.DeserializeObject<RootProvincia>(provinciasRD.GetProvincias());
+            userClaims = await localStorageService.GetItemAsync<UserClaims>("user");
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
 
     }
 
     async Task GuardarEditarVacantes()
     {
-        if (IdVacante !=0)
+        if (IdVacante != 0)
         {
             string json = JsonConvert.SerializeObject(vacante);
             StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
@@ -205,7 +215,7 @@
         }
         else
         {
-            vacante.IdUsuarioCreacion = 3;
+            vacante.IdUsuarioCreacion = userClaims.IdUsuario;
             string json = JsonConvert.SerializeObject(vacante);
             StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
             var responses = await http.PostAsync("https://localhost:44322/api/Vacantes", httpContent);

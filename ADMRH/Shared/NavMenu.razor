@@ -1,5 +1,7 @@
 ﻿@inject IJSRuntime Js
-
+@inject SweetAlertService Swal;
+@inject NavigationManager Navigate;
+@inject ILocalStorageService localStorageService
 <style>
     .sidenav {
         height: 100%;
@@ -11,9 +13,9 @@
         background: #023877;
         overflow-x: hidden;
         transition: 0.5s;
-        
         /*pointer-events: none;*/
     }
+
     .iconMC {
         width: 3.65rem;
         margin-left: 3.5rem;
@@ -26,11 +28,12 @@
         cursor: pointer;
         transition: 0.5s;
     }
-    .iconMC:hover{
-         background: #808080;
-    }
 
-        /*.sidenav a {
+        .iconMC:hover {
+            background: #808080;
+        }
+
+    /*.sidenav a {
       padding: 6px 6px 6px 15px;
       text-decoration: none;
       font-size: 17px;
@@ -40,21 +43,21 @@
       background:red;
       border-bottom:solid 1px black;
     }*/
-        /* .rz-panel-menu, .rz-navigation-item-wrapper, .rz-navigation-item {
+    /* .rz-panel-menu, .rz-navigation-item-wrapper, .rz-navigation-item {
             overflow-y: hidden !important;
         }*/
-        .sidenav a:hover {
-            color: #f1f1f1;
-        }
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
 
 
-        .sidenav .closebtn {
-            position: absolute;
-            top: 0;
-            right: 25px;
-            font-size: 36px;
-            margin-left: 50px;
-        }
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
 
     .rz-panel-menu .rz-navigation-item-link {
         padding-left: 1rem;
@@ -69,24 +72,28 @@
     .rz-navigation-item-wrapper-active:before {
         background-color: #006797 !important;
     }
-    .hid{
-        margin-left:2.4px;
+
+    .hid {
+        margin-left: 2.4px;
     }
-    .block{
-        margin-left:1rem;
+
+    .block {
+        margin-left: 1rem;
     }
-    .bloc{
-        height:60px;
+
+    .bloc {
+        height: 60px;
     }
-    .hiden{
-        height:100px;
+
+    .hiden {
+        height: 100px;
     }
 
 
     #main {
         transition: margin-left .4s;
         padding: 16px;
-        margin-left:70px
+        margin-left: 70px
     }
 
     @@media screen and (max-height: 450px) {
@@ -101,7 +108,7 @@
 </style>
 
 
-   
+
 <div id="MostrarOcutar" @onclick="Open" class="iconMC">
     @if (!cierre)
     {
@@ -112,7 +119,7 @@
         <i style="float:right; margin-top:14.5px;" class="fas fa-times fa-2x mr-3"></i>
     }
 </div>
-   
+
 <div id="mySidenav" class="sidenav">
 
     <div class="brand-container" style="z-index:990!important; margin-bottom:10px;">
@@ -124,7 +131,15 @@
     <a>
         <RadzenPanelMenu Style="width: 100%; overflow-y: hidden !important; background: #023877; ">
             <RadzenPanelMenuItem Text="Inicio" Path="/home" Icon="home"></RadzenPanelMenuItem>
-            <RadzenPanelMenuItem Text="Usuarios" Path="usuarios" Icon="account_circle"></RadzenPanelMenuItem>
+
+            @if (userClaims != null)
+            {
+                @if (userClaims.Rol.Equals("Administrador"))
+                {
+                    <RadzenPanelMenuItem Text="Usuarios" Path="usuarios" Icon="account_circle"></RadzenPanelMenuItem>
+                }
+            }
+
             <RadzenPanelMenuItem Text="Candidatos" Path="candidatos" Icon="face"></RadzenPanelMenuItem>
             <RadzenPanelMenuItem Text="Vacantes" Path="vacantes" Icon="account_balance"></RadzenPanelMenuItem>
             <RadzenPanelMenuItem Text="Configuracion" Path="notification" Icon="build"></RadzenPanelMenuItem>
@@ -137,21 +152,25 @@
                 <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="40" height="40" class="rounded-circle cursor ml-2" />
                 @if (cierre)
                 {
-                    <span style="transition: 0.5s">
-                        Yunior moreta
-                    </span>
+                    @if (userClaims != null)
+                    {
+                        <span class="ml-2" style="transition: 0.5s">
+                            @userClaims.Nombre @userClaims.Apellido
+                        </span>
+                    }
+
                 }
             </div>
             @if (cierre)
             {
-                <div class="col text-center pl-0 pt-1 text-white">
-                    <i class="fas fa-power-off fa-2x ml-2"></i>
+                <div class="col text-center pl-0 pt-1 text-white" style="cursor:pointer;">
+                    <i class="fas fa-power-off fa-2x ml-2"  @onclick="Salir"></i>
                 </div>
             }
             else
             {
-                <div class="col text-center pl-0 pt-1 text-white">
-                    <i class="fas fa-power-off fa-2x ml-3"></i>
+                <div class="col text-center pl-0 pt-1 text-white" style="cursor:pointer;">
+                    <i class="fas fa-power-off fa-2x ml-3"  @onclick="Salir"></i>
                 </div>
             }
         </div>
@@ -162,38 +181,26 @@
 </div>
 
 
-
-@*<div class="top-row pl-4 navbar navbar-dark">
-        <a class="navbar-brand" href="">ADMRH</a>
-        <button class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-
-    <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-        <ul class="nav flex-column">
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                    <span class="oi oi-home" aria-hidden="true"></span> Home
-                </NavLink>
-            </li>
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="counter">
-                    <span class="oi oi-plus" aria-hidden="true"></span> Counter
-                </NavLink>
-            </li>
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="fetchdata">
-                    <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-                </NavLink>
-            </li>
-        </ul>
-    </div>*@
-
 @code {
     private bool collapseNavMenu = true;
-
-
+    UserClaims userClaims;
+    Autorized autorized = new Autorized();
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            userClaims = await localStorageService.GetItemAsync<UserClaims>("user");
+            if (userClaims?.IdUsuario == default)
+            {
+                await localStorageService.RemoveItemAsync("user");
+                Navigate.NavigateTo("/login");
+                return;
+            }
+        }
+        catch (Exception)
+        {
+        }
+    }
     public bool cierre { get; set; } = false;
     async Task Open()
     {
@@ -212,5 +219,26 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+
+    async Task Salir()
+    {
+        var result = await Swal.FireAsync(new SweetAlertOptions
+        {
+            Title = "¿Estas seguro?",
+            Text = "¿Estas seguro de que quieres salir del sistema?",
+            Icon = SweetAlertIcon.Warning,
+            ShowCancelButton = true,
+            ConfirmButtonText = "Si, salir",
+            CancelButtonText = "No"
+        });
+
+        if (!string.IsNullOrEmpty(result.Value))
+        {
+            await localStorageService.RemoveItemAsync("user");
+            Navigate.NavigateTo("/login");
+            return;
+        }
     }
 }

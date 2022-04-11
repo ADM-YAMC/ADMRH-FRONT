@@ -19,15 +19,32 @@ namespace ADMRH.Pages.Usuarios
         CedulaUsuario cedula = new CedulaUsuario();
         private ResponseUser response;
         private ResponseMessageCountCantidaVC responseMessageCountCantidaVC;
+        UserClaims userClaims;
+        CambioContraseña cambio = new CambioContraseña();
+        public bool boolvalue { get; set; }
         public bool loading { get; set; } = false;
         protected override async Task OnInitializedAsync()
         {
-            loading = true;
-            usuario = await http.GetFromJsonAsync<Usuario>($"https://localhost:44322/api/Usuarios/{idUsuario}");
-            cedula = await http.GetFromJsonAsync<CedulaUsuario?>($"https://api.adamix.net/apec/cedula/{usuario.Cedula}");
-            responseMessageCountCantidaVC = await  http.GetFromJsonAsync<ResponseMessageCountCantidaVC>($"https://localhost:44322/api/Usuarios/cantidadVC/{idUsuario}");
-            if (usuario != null)
-                loading = false;
+            try
+            {
+                userClaims = await localStorageService.GetItemAsync<UserClaims>("user");
+                if (!userClaims.Rol.Equals("Administrador"))
+                {
+                    navigate.NavigateTo("home");
+                }
+                loading = true;
+                usuario = await http.GetFromJsonAsync<Usuario>($"https://localhost:44322/api/Usuarios/{idUsuario}");
+                cedula = await http.GetFromJsonAsync<CedulaUsuario?>($"https://api.adamix.net/apec/cedula/{usuario.Cedula}");
+                responseMessageCountCantidaVC = await http.GetFromJsonAsync<ResponseMessageCountCantidaVC>($"https://localhost:44322/api/Usuarios/cantidadVC/{idUsuario}");
+                if (usuario != null)
+                    loading = false;
+                
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
         }
 
 
@@ -47,6 +64,48 @@ namespace ADMRH.Pages.Usuarios
             {
                 await Swal.FireAsync("Oops...", $"{response.mensaje}", "error");
                 loading = false;
+            }
+        }
+        async Task OnPutPassAsync()
+        {
+            loading = true;
+            string json = JsonConvert.SerializeObject(cambio);
+            StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            var responses = await http.PutAsync($"https://localhost:44322/api/Usuarios/cambioContraseña/{idUsuario}", httpContent);
+            response = await responses.Content.ReadFromJsonAsync<ResponseUser>();
+            if (response.ok == true)
+            {
+
+                await Swal.FireAsync("¡Exito!", $"{response.mensaje}", "success");
+                cambio = new CambioContraseña();
+                loading = false;
+            }
+            else
+            {
+                await Swal.FireAsync("Oops...", $"{response.mensaje}", "error");
+                cambio = new CambioContraseña();
+                loading = false;
+            }
+        }
+
+        void OnInitModal()
+        {
+            cambio.rnuevaContraseña = "nan";
+            cambio.idUsuario = usuario.IdUsuario;
+            cambio.viejaContraseña = usuario.Contraseña;
+
+        }
+
+        void toggle()
+        {
+            boolvalue = !boolvalue;
+            if (boolvalue)
+            {
+                cambio.Estado = 1;
+            }
+            else
+            {
+                cambio.Estado = 0;
             }
         }
 

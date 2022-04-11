@@ -13,119 +13,147 @@ namespace ADMRH.Pages.Candidatos
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 1 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 2 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using System.Net.Http.Json;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 3 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 4 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 5 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 6 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 7 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 8 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 9 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using ADMRH;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 10 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using ADMRH.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 11 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using ADMRH.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 12 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Radzen;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 13 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using ADMRH_API.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 14 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Radzen.Blazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 15 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using CurrieTechnologies.Razor.SweetAlert2;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 16 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using ADMRH.Pages.Loadings;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\Pages\Candidatos\RegistroCandidato.razor"
+#line 17 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+using Blazored.LocalStorage;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 18 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+using System.Text.Json;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 19 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+using System.Text;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+using ADMRH.Herpers;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\Pages\Candidatos\RegistroCandidato.razor"
 using Newtonsoft.Json;
 
 #line default
@@ -142,7 +170,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 100 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\Pages\Candidatos\RegistroCandidato.razor"
+#line 101 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\Pages\Candidatos\RegistroCandidato.razor"
        
     Candidato candidate = new Candidato();
     Archivo archivo = new Archivo();
@@ -151,10 +179,24 @@ using Newtonsoft.Json;
     List<Candidato> candidatosList;
     string cv, mensaje;
     bool estado = false;
+    UserClaims userClaims;
 
     [Parameter]
     public int IdVacante { get; set; }
 
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            userClaims = await localStorageService.GetItemAsync<UserClaims>("user");
+            StateHasChanged();
+        }
+        catch (Exception)
+        {
+
+
+        }
+    }
 
     async Task OnFileInputChangeFoto(InputFileChangeEventArgs e)
     {
@@ -203,7 +245,7 @@ using Newtonsoft.Json;
         {
             candidate = candidatosList[0];
             await Swal.FireAsync("Vaya", $"Hola {candidate.Nombre}, no puedes aplicar a mas de una vacante por mes...", "info");
-            Navigate.NavigateTo("/");
+            Navigate.NavigateTo("/", forceLoad:true);
         }
 
 
@@ -278,7 +320,7 @@ using Newtonsoft.Json;
             archivoTemp = null;
             archivo = new Archivo();
             estado = false;
-            Navigate.NavigateTo("vacantes-publicas");
+            Navigate.NavigateTo("/");
             await Swal.FireAsync("¡Exito!", $"{responseC.message}", "success");
         }
         else
@@ -290,30 +332,14 @@ using Newtonsoft.Json;
     {
         public bool ok { get; set; }
         public string message { get; set; }
-    }
-    void OnCreationDateChange(DateTime value)
-    {
-        //
+        public Candidato? candidatos { get; set; }
     }
 
-    void OnError()
-    {
-        // pop up an error notification
-    }
-
-    void Submit()
-    {
-        // submit action
-    }
-
-    void Cancel()
-    {
-        // cancel action
-    }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ILocalStorageService localStorageService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager Navigate { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private SweetAlertService Swal { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient http { get; set; }

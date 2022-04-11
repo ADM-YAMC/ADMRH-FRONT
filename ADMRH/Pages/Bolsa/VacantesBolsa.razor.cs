@@ -1,4 +1,5 @@
-﻿using ADMRH_API.Models;
+﻿using ADMRH.Models;
+using ADMRH_API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,11 @@ namespace ADMRH.Pages.Bolsa
             if (response != null)
             {
                 loading = false;
+            }
+            var user = await localStorageService.GetItemAsync<UserClaims>("user");
+            if (user?.IdUsuario != default)
+            {
+                Navigate.NavigateTo("/home");
             }
 
         }

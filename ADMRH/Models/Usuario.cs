@@ -9,8 +9,9 @@ namespace ADMRH_API.Models
     public partial class Usuario
     {
         public int IdUsuario { get; set; }
-        [Required(ErrorMessage ="El nombre es requerido...")]
+       
         public int? IdCreacionUser { get; set; }
+        [Required(ErrorMessage = "El nombre es requerido...")]
         public string Nombre { get; set; }
         [Required(ErrorMessage = "El apellido es requerido...")]
         public string Apellido { get; set; }
@@ -30,5 +31,6 @@ namespace ADMRH_API.Models
         public string? Token { get; set; }
         public DateTime LoginDate { get; set; }
         public DateTime CreateDate { get; set; }
+        public int? PCambio { get; set; }
     }
 }

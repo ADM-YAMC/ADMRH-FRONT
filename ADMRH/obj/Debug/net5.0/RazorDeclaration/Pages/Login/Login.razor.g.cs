@@ -13,119 +13,154 @@ namespace ADMRH.Pages.Login
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 1 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 2 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using System.Net.Http.Json;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 3 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 4 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 5 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 6 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 7 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 8 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 9 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using ADMRH;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 10 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using ADMRH.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 11 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using ADMRH.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 12 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Radzen;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 13 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using ADMRH_API.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 14 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using Radzen.Blazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 15 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using CurrieTechnologies.Razor.SweetAlert2;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+#line 16 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
 using ADMRH.Pages.Loadings;
 
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 17 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+using Blazored.LocalStorage;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 18 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+using System.Text.Json;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 19 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+using System.Text;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\_Imports.razor"
+using ADMRH.Herpers;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\Pages\Login\Login.razor"
+using ADMRH.Pages.Vacantes;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(PublicLayout))]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/tg")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/login")]
     public partial class Login : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -134,16 +169,135 @@ using ADMRH.Pages.Loadings;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 23 "C:\Users\Alex-carreras\Source\Repos\ADMRH-FRONT\ADMRH\Pages\Login\Login.razor"
-       
-    void OnLogin(LoginArgs args)
+#line 57 "C:\Users\Alex-carreras\source\repos\ADMRH-FRONT\ADMRH\Pages\Login\Login.razor"
+        
+
+    public bool loading { get; set; }
+    public bool pedirCambio { get; set; }
+    Response jsonData;
+    CambioContraseña cambio = new CambioContraseña();
+    ResponseUser responseUser;
+    protected override async Task OnInitializedAsync()
     {
-        // Log user logic
+        var user = await localStorageService.GetItemAsync<UserClaims>("user");
+
+        if (user != null)
+        {
+            await JSRuntime.InvokeVoidAsync("history.back");
+        }
+
+        await base.OnInitializedAsync();
     }
+
+    async void OnLogin(LoginArgs args)
+    {
+        loading = true;
+
+        var credentials = new
+        {
+            user = args.Username,
+            pass = args.Password
+        };
+
+        var userString = JsonSerializer.Serialize(credentials);
+        var requestContent = new StringContent(userString, Encoding.UTF8, "application/json");
+        var response = await http.PostAsync("https://localhost:44322/api/InitUser", requestContent);
+
+        jsonData = await response.Content.ReadFromJsonAsync<Response>();
+
+        if (!jsonData.ok || jsonData.claims == null)
+        {
+            await localStorageService.RemoveItemAsync("user");
+            await Swal.FireAsync("Oops...", $"{jsonData.mensaje}", "error");
+            return;
+        }
+        else {
+            if (jsonData.claims.PCambio==1)
+            {
+                pedirCambio = true;
+                StateHasChanged();
+            }
+            else
+            {
+                await localStorageService.SetItemAsync("user", jsonData.claims);
+                navigation.NavigateTo($"/home");
+                loading = false;
+            }
+        }
+    }
+
+    async void OnLogOut()
+    {
+        await localStorageService.RemoveItemAsync("user");
+        navigation.NavigateTo($"/login");
+    }
+    async Task OnPutAsync()
+    {
+        if (cambio.nuevaContraseña == cambio.rnuevaContraseña)
+        {
+            cambio.Estado = 0;
+            string json = JsonSerializer.Serialize(cambio);
+            StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            var responses = await http.PutAsync($"https://localhost:44322/api/Usuarios/cambioContraseña/{jsonData.claims.IdUsuario}", httpContent);
+            responseUser = await responses.Content.ReadFromJsonAsync<ResponseUser>();
+            if (responseUser.ok == true)
+            {
+                await Swal.FireAsync("¡Exito!", $"{responseUser.mensaje}", "success");
+                await localStorageService.SetItemAsync("user", jsonData.claims);
+                navigation.NavigateTo($"/home");
+                loading = false;
+            }
+            else
+            {
+                await Swal.FireAsync("Oops...", $"{responseUser.mensaje}", "error");
+                loading = false;
+            }
+        }
+        else
+        {
+            await Swal.FireAsync("Oops...", $"Las contrañena no coinciden...", "error");
+            loading = false;
+        }
+    }
+
+
+    public class ResponseUser
+    {
+        public bool ok { get; set; }
+        public string mensaje { get; set; }
+    }
+
+    public class Response
+    {
+        public bool ok { get; set; }
+        public UserClaims claims { get; set; }
+        public string mensaje { get; set; }
+    }
+
+
+    //public class User
+    //{
+    //    public int IdUsuario { get; set; }
+    //    public string Nombre { get; set; }
+    //    public string Apellido { get; set; }
+    //    public string Cedula { get; set; }
+    //    public string Telefono { get; set; }
+    //    public string Departamento { get; set; }
+    //    public string Direccion { get; set; }
+    //    public string Rol { get; set; }
+    //    public string Correo { get; set; }
+    //}
+
+
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private SweetAlertService Swal { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ILocalStorageService localStorageService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigation { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient http { get; set; }
     }
 }
 #pragma warning restore 1591

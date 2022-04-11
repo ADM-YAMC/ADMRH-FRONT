@@ -2,7 +2,7 @@
 @layout PublicLayout
 @inject NavigationManager Navigate
 @inject HttpClient http
-
+@inject ILocalStorageService localStorageService
 <style>
     .content-card {
         display: grid;
@@ -10,18 +10,22 @@
         grid-auto-rows: 27rem;
         grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
     }
-    .div-description{
-        height:100px;
+
+    .div-description {
+        height: 100px;
     }
-    .div-basic-info{
+
+    .div-basic-info {
         height: 50px;
     }
+
     .div-basic-infov {
         height: 70px;
     }
-    .card-content{
-        border-radius:5px;
-        height:424px;
+
+    .card-content {
+        border-radius: 5px;
+        height: 424px;
     }
 </style>
 
@@ -32,7 +36,7 @@
             <h1 class="mt-2 ml-4">Bolsa de Empleos</h1>
         </div>
         <div class="col-sm-4">
-            <input placeholder="Filtrar por: Nombre, cargo o provincia..." class="form-control mt-3 mr-5"  @bind="Buscar"
+            <input placeholder="Filtrar por: Nombre, cargo o provincia..." class="form-control mt-3 mr-5" @bind="Buscar"
                    @bind:event="oninput" />
         </div>
     </div>

@@ -1,4 +1,6 @@
-﻿using ADMRH_API.Models;
+﻿using ADMRH.Herpers;
+using ADMRH.Models;
+using ADMRH_API.Models;
 using CurrieTechnologies.Razor.SweetAlert2;
 using Microsoft.AspNetCore.Components;
 using Radzen.Blazor;
@@ -17,6 +19,7 @@ namespace ADMRH.Pages.Vacantes
         //public Root files;
         List<Vacante> vacantes;
         RadzenDataGrid<Vacante> VacantesGrid;
+        UserClaims userClaims;
         private Response response;
 
         [Parameter]
@@ -28,14 +31,7 @@ namespace ADMRH.Pages.Vacantes
         protected override async Task OnParametersSetAsync()
         {
             loading = true;
-            if (IdVacante != null)
-            {
-                response = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes/{IdVacante}");
-                vacantes = response.vacante;
-                loading = false;
-            }
-            else
-            {
+           
                 if (IdUsuario != null)
                 {
                     response = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes/user/{IdUsuario}");
@@ -49,7 +45,7 @@ namespace ADMRH.Pages.Vacantes
                     vacantes = response.vacante;
                     loading = false;
                 }
-            }
+            userClaims = await localStorageService.GetItemAsync<UserClaims>("user");
         }
 
         async Task ConfirmacionElimanarVacante(Vacante vacante)
@@ -87,8 +83,8 @@ namespace ADMRH.Pages.Vacantes
             if (response != null)
                 loading = false;
         }
-
     }
+   
 
     public class Response
     {

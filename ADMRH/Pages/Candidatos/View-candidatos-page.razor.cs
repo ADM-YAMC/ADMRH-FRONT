@@ -21,6 +21,8 @@ namespace ADMRH.Pages.Candidatos
         Response response, responseAll;
         Candidato candidate = new Candidato();
         ResponseC responseC;
+        UserClaims userClaims;
+        
         int IdVacante;
         [Parameter]
         public int idCandidato { get; set; }
@@ -29,22 +31,42 @@ namespace ADMRH.Pages.Candidatos
 
         protected override async Task OnInitializedAsync()
         {
-            candidate = await http.GetFromJsonAsync<Candidato>($"https://localhost:44322/api/Candidatos/{idCandidato}");
-            IdVacante = candidate.IdVacante;
-            responseAll = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes");
-            StateHasChanged();
-            if (candidate.IdArchivos !=0)
+            try
             {
-                archivo = await http.GetFromJsonAsync<Archivo>($"https://localhost:44322/api/Archivos/{candidate.IdArchivos}");
-                await GetVacanteOfCandidate();
+                userClaims = await localStorageService.GetItemAsync<UserClaims>("user");
+                responseC = await http.GetFromJsonAsync<ResponseC>($"https://localhost:44322/api/Candidatos/{idCandidato}");
+               
+                IdVacante = candidate.IdVacante;
+                responseAll = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes");
                 StateHasChanged();
+                if (candidate.IdArchivos != 0)
+                {
+                    archivo = await http.GetFromJsonAsync<Archivo>($"https://localhost:44322/api/Archivos/{candidate.IdArchivos}");
+                    await GetVacanteOfCandidate();
+                    StateHasChanged();
 
+                }
+                if (!responseC.ok)
+                {
+                    await Swal.FireAsync("Oops...", $"{responseC.message}", "error");
+                    navigate.NavigateTo("candidatos");
+                }
+                else
+                {
+                    candidate = responseC.candidatos;
+                }
+            }
+            catch (Exception)
+            {
+
+                Console.WriteLine();
             }
 
         }
 
         async Task EditCandidate()
         {
+            candidate.IdUsuarioCreacion = userClaims.IdUsuario;
             string json = JsonConvert.SerializeObject(candidate);
             StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
             var responses = await http.PutAsync($"https://localhost:44322/api/Candidatos/{candidate.IdCandidato}", httpContent);

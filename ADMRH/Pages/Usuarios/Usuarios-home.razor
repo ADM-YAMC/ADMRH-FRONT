@@ -1,17 +1,10 @@
 ﻿@page "/usuarios"
-
+@inject NavigationManager navigate
+@inject ILocalStorageService localStorageService
 <div class="container-xl mt-5">
     <RadzenCard>
-        <div class="row">
-            <div class="col">
-                <h1>Usuarios</h1>
-            </div>
-            <div class="col">
-                <a href="/usuarios/nuevo-usuario" style="text-decoration:none;" class="btn btn-success float-right">Nuevo usuario</a>
-            </div>
-        </div>
         <div class="row border-top">
-            <div class="col mt-2">
+            <div class="col mt-2 pt-3">
                 <Usuarios_table />
             </div>
         </div>
@@ -19,5 +12,23 @@
 </div>
 
 @code {
+    UserClaims userClaims;
 
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+
+            userClaims = await localStorageService.GetItemAsync<UserClaims>("user");
+            if (!userClaims.Rol.Equals("Administrador"))
+            {
+                navigate.NavigateTo("home");
+            }
+        }
+        catch (System.Exception)
+        {
+
+            throw;
+        }
+    }
 }

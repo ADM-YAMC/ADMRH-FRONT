@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "net5.0": {
+      "Blazored.LocalStorage/4.3.0-preview.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "5.0.5"
+        },
+        "compile": {
+          "lib/net5.0/Blazored.LocalStorage.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Blazored.LocalStorage.dll": {}
+        }
+      },
       "CsvHelper/27.2.1": {
         "type": "package",
         "compile": {
@@ -1479,6 +1491,18 @@
       }
     },
     "net5.0/browser-wasm": {
+      "Blazored.LocalStorage/4.3.0-preview.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "5.0.5"
+        },
+        "compile": {
+          "lib/net5.0/Blazored.LocalStorage.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Blazored.LocalStorage.dll": {}
+        }
+      },
       "CsvHelper/27.2.1": {
         "type": "package",
         "compile": {
@@ -2963,6 +2987,20 @@
     }
   },
   "libraries": {
+    "Blazored.LocalStorage/4.3.0-preview.1": {
+      "sha512": "QEmh/JjnrmA1ZDoRBNMCW+OOkIlGutzJzKLRFzJq9OC4JiLN2vMV1KgiukAp1Ti6BZz1cHz7eMehKTaBipOxPw==",
+      "type": "package",
+      "path": "blazored.localstorage/4.3.0-preview.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "blazored.localstorage.4.3.0-preview.1.nupkg.sha512",
+        "blazored.localstorage.nuspec",
+        "icon.png",
+        "lib/net5.0/Blazored.LocalStorage.dll",
+        "lib/net6.0/Blazored.LocalStorage.dll"
+      ]
+    },
     "CsvHelper/27.2.1": {
       "sha512": "uS5ix5hL9gL5taiAG//CScyJa8Fn1ZOh3FDhDvf4laboESFs84mCNropfp7PIt8xCkyQofljFpqu1B5UnSXjyA==",
       "type": "package",
@@ -7313,6 +7351,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Blazored.LocalStorage >= 4.3.0-preview.1",
       "CsvHelper >= 27.2.1",
       "CurrieTechnologies.Razor.SweetAlert2 >= 5.2.0",
       "EPPlus >= 5.8.4",
@@ -7331,11 +7370,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alex-carreras\\Source\\Repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj",
+      "projectUniqueName": "C:\\Users\\Alex-carreras\\source\\repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj",
       "projectName": "ADMRH",
-      "projectPath": "C:\\Users\\Alex-carreras\\Source\\Repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj",
+      "projectPath": "C:\\Users\\Alex-carreras\\source\\repos\\ADMRH-FRONT\\ADMRH\\ADMRH.csproj",
       "packagesPath": "C:\\Users\\Alex-carreras\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alex-carreras\\Source\\Repos\\ADMRH-FRONT\\ADMRH\\obj\\",
+      "outputPath": "C:\\Users\\Alex-carreras\\source\\repos\\ADMRH-FRONT\\ADMRH\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -7370,6 +7409,10 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "Blazored.LocalStorage": {
+            "target": "Package",
+            "version": "[4.3.0-preview.1, )"
+          },
           "CsvHelper": {
             "target": "Package",
             "version": "[27.2.1, )"
