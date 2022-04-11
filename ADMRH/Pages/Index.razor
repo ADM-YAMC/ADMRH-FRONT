@@ -41,6 +41,11 @@
         {
             @if (userClaims.Rol.Equals("Administrador"))
             {
+                <div class="row">
+                    <div class="col">
+                        <h2>Usuarios</h2>
+                    </div>
+                </div>
                 <Usuarios_table IdUsuario="0" />
             }
             else

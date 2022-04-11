@@ -58,13 +58,6 @@ namespace ADMRH.Pages.Usuarios
                     );
                 var header = wordsheet.Cells["A1:H1"];
                 wordsheet.DefaultColWidth = 30;
-                wordsheet.DefaultRowHeight = 50;
-                header.Style.Font.Bold = true;
-                header.Style.Font.Color.SetColor(Color.White);
-                header.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.DarkGrid;
-                header.Style.Fill.BackgroundColor.SetColor(Color.BlueViolet);
-                
-
                await Js.GuardarComo($"usuarios_{fecha}.xlsx", package.GetAsByteArray());
             }
         }
