@@ -53,8 +53,11 @@
         </RadzenCard>
     </div>
 </div>
-
-@code { 
+@if (loading)
+{
+    <Loading />
+}
+@code {
 
     public bool loading { get; set; }
     public bool pedirCambio { get; set; }
@@ -91,13 +94,18 @@
 
         if (!jsonData.ok || jsonData.claims == null)
         {
+
             await localStorageService.RemoveItemAsync("user");
             await Swal.FireAsync("Oops...", $"{jsonData.mensaje}", "error");
+            loading = false;
+            StateHasChanged();
             return;
         }
-        else {
-            if (jsonData.claims.PCambio==1)
+        else
+        {
+            if (jsonData.claims.PCambio == 1)
             {
+                loading = false;
                 pedirCambio = true;
                 StateHasChanged();
             }
@@ -117,6 +125,7 @@
     }
     async Task OnPutAsync()
     {
+        loading = true;
         if (cambio.nuevaContraseña == cambio.rnuevaContraseña)
         {
             cambio.Estado = 0;
