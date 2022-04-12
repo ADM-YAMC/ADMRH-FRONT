@@ -23,6 +23,7 @@ namespace ADMRH_API.Models
         [Required(ErrorMessage = "El telefono es obligatorio...")]
         public string Telefono { get; set; }
         [Required(ErrorMessage = "El correo es obligatorio...")]
+         [EmailAddress(ErrorMessage ="Escriba un correo valido...")]
         public string Correo { get; set; }
         public string FechaCreacion { get; set; }
     }

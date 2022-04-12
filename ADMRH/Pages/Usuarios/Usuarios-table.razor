@@ -3,13 +3,13 @@
 @inject SweetAlertService Swal;
 @inject IJSRuntime Js
 @using ADMRH.Pages.Loadings
-
+@inject ILocalStorageService localStorageService
 
 @if (usuarios != null)
 {
     if (usuarios.Count != 0)
     {
-         <div class="row">
+        <div class="row">
             <div class="col mb-3">
                 <button class="btn btn-success float-right" @onclick="ExportarCSV">Exportar <i class="fas fa-file-excel"></i></button>
             </div>
@@ -23,15 +23,48 @@
                 <RadzenDataGridColumn TItem="Usuario" Property="Telefono" Title="Telefono" Width="100px" />
                 <RadzenDataGridColumn TItem="Usuario" Property="Correo" Title="Correo" Width="140px" />
                 <RadzenDataGridColumn TItem="Usuario" Property="Rol" Title="Rol" Width="140px" />
-                <RadzenDataGridColumn TItem="Usuario" Title="Photo" Width="100px" Filterable="false">
+                <RadzenDataGridColumn TItem="Usuario" Title="Estado" Width="100px" Filterable="false">
+                    <Template Context="data">
+                        @if (data.Estado == 1)
+                        {
+                            <RadzenBadge BadgeStyle="BadgeStyle.Danger" Text="Bloqueado" />
+                        }
+                        else
+                        {
+                            <RadzenBadge BadgeStyle="BadgeStyle.Success" Text="Activo" />
+                        }
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="Usuario" Title="Operaciones" Width="100px" Filterable="false">
                     <Template Context="data">
                         <div class="row">
-                            <div class="col pr-1">
-                                <a style="text-decoration:none;" href="usuarios/view-user/@data.IdUsuario" class="btn btn-success w-100"><i class="fas fa-user-edit"></i></a>
-                            </div>
-                            <div class="col pl-1">
-                                <button class="btn btn-danger w-100" @onclick="@(() => ConfirmacionElimanarUsuario(data))"><i class="fas fa-trash"></i></button>
-                            </div>
+                            @if (userClaims != null)
+                            {
+                                if (userClaims.Rol != data.Rol || userClaims.IdUsuario == data.IdUsuario)
+                                {
+                                    <div class="col pr-1">
+                                        <a style="text-decoration:none;" href="usuarios/view-user/@data.IdUsuario" class="btn btn-success w-100"><i class="fas fa-user-edit"></i></a>
+                                    </div>
+                                    <div class="col pl-1">
+                                        @if (userClaims.IdUsuario != data.IdUsuario)
+                                        {
+                                            <button class="btn btn-danger w-100" @onclick="@(() => ConfirmacionElimanarUsuario(data))"><i class="fas fa-trash"></i></button>
+                                        }
+                                        else { 
+                                           <button class="btn btn-danger w-100" style=" cursor:not-allowed;" disabled><i class="fas fa-trash"></i></button>
+                                        }
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col pr-1">
+                                        <a style="text-decoration:none; cursor:not-allowed;" disabled class="btn btn-success w-100"><i class="fas fa-user-edit"></i></a>
+                                    </div>
+                                    <div class="col pl-1">
+                                        <button style=" cursor:not-allowed;" class="btn btn-danger w-100" disabled><i class="fas fa-trash"></i></button>
+                                    </div>
+                                }
+                            }
                         </div>
                     </Template>
                 </RadzenDataGridColumn>
@@ -44,9 +77,8 @@
             No se encontraron datos...
         </div>
     }
+
 }
-
-
 @if (loading)
 {
     <Loading />

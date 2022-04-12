@@ -10,10 +10,14 @@
             <Columns>
                 <RadzenDataGridColumn TItem="Vacante" Property="Nombre" Title="Nombre" Frozen="true" Width="140px" />
                 <RadzenDataGridColumn TItem="Vacante" Property="Departamento" Title="Departamento" Width="140px" />
-                <RadzenDataGridColumn TItem="Vacante" Property="Descripcion" Title="Descripcion" Width="200px" />
+                <RadzenDataGridColumn TItem="Vacante" Property="Descripcion" Title="Descripcion" Width="200px" >
+                    <Template Context="data">
+                        @((MarkupString)data.Descripcion)
+                    </Template>
+                </RadzenDataGridColumn>
                 <RadzenDataGridColumn TItem="Vacante" Property="Cargo" Title="Cargo" Width="100px" />
                 <RadzenDataGridColumn TItem="Vacante" Property="Salario" Title="Salario" Width="140px" />
-                <RadzenDataGridColumn TItem="Vacante" Title="Photo" Width="100px" Filterable="false">
+                <RadzenDataGridColumn TItem="Vacante" Title="Operaciones" Width="100px" Filterable="false">
                     <Template Context="data">
                         <div class="row m-auto">
                             <div class="col pr-1">

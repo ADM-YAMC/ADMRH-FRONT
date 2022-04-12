@@ -26,11 +26,13 @@ namespace ADMRH_API.Models
         [Required(ErrorMessage = "El rol es requerido...")]
         public string Rol { get; set; }
         [Required(ErrorMessage = "El correo es requerido...")]
+        [EmailAddress(ErrorMessage ="Escriba un correo valido...")]
         public string Correo { get; set; }
         public string Contraseña { get; set; }
         public string? Token { get; set; }
         public DateTime LoginDate { get; set; }
         public DateTime CreateDate { get; set; }
         public int? PCambio { get; set; }
+        public int? Estado { get; set; }
     }
 }

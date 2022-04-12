@@ -1,5 +1,6 @@
 ﻿using ADMRH.Models;
 using ADMRH_API.Models;
+using CurrieTechnologies.Razor.SweetAlert2;
 using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
 using System.Net.Http;
@@ -33,7 +34,7 @@ namespace ADMRH.Pages.Usuarios
                     navigate.NavigateTo("home");
                 }
                 loading = true;
-                usuario = await http.GetFromJsonAsync<Usuario>($"https://localhost:44322/api/Usuarios/{idUsuario}");
+                await ReloadUser();
                 cedula = await http.GetFromJsonAsync<CedulaUsuario?>($"https://api.adamix.net/apec/cedula/{usuario.Cedula}");
                 responseMessageCountCantidaVC = await http.GetFromJsonAsync<ResponseMessageCountCantidaVC>($"https://localhost:44322/api/Usuarios/cantidadVC/{idUsuario}");
                 if (usuario != null)
@@ -47,6 +48,10 @@ namespace ADMRH.Pages.Usuarios
             }
         }
 
+        async Task ReloadUser()
+        {
+            usuario = await http.GetFromJsonAsync<Usuario>($"https://localhost:44322/api/Usuarios/{idUsuario}");
+        }
 
 
         async Task OnPutAsync()
@@ -87,6 +92,49 @@ namespace ADMRH.Pages.Usuarios
                 loading = false;
             }
         }
+
+        async Task OnPutLookUnLokUserAsync(int estado)
+        {
+            loading = true;
+            string json = JsonConvert.SerializeObject(cambio);
+            StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+            var responses = await http.PutAsync($"https://localhost:44322/api/Usuarios/LookUnLookUser/{idUsuario}/{estado}", httpContent);
+            response = await responses.Content.ReadFromJsonAsync<ResponseUser>();
+            if (response.ok == true)
+            {
+
+                await Swal.FireAsync("¡Exito!", $"{response.mensaje}", "success");
+                await ReloadUser();
+                loading = false;
+            }
+            else
+            {
+                await Swal.FireAsync("Oops...", $"{response.mensaje}", "error");
+                cambio = new CambioContraseña();
+                loading = false;
+            }
+        }
+
+
+        async Task ConfirmacionLookUnLookUsuario(int estado)
+        {
+            var tipo = estado == 1 ? "bloquear" : "desbloquear";
+            var result = await Swal.FireAsync(new SweetAlertOptions
+            {
+                Title = "Precaución",
+                Text = $"¿Estas seguro de que quieres { tipo} el usuario?",
+                Icon = SweetAlertIcon.Warning,
+                ShowCancelButton = true,
+                ConfirmButtonText = $"Si, {tipo}",
+                CancelButtonText = "No"
+            });
+
+            if (!string.IsNullOrEmpty(result.Value))
+            {
+                await OnPutLookUnLokUserAsync(estado);
+            }
+        }
+
 
         void OnInitModal()
         {

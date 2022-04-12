@@ -1,11 +1,12 @@
 ﻿@inherits LayoutComponentBase
 @inject NavigationManager navigation
 <PublicNavbar />
-<div id="main">
-    <div class="container-xl">
+<div id="main" style="height:100vh;">
+    <div class="container-xl h-100">
         @Body
     </div>
 </div>
+
 @if(!@route.Contains("login")) {
     <MainFooter />
 }

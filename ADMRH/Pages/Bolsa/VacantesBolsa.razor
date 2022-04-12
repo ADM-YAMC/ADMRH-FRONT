@@ -12,7 +12,10 @@
     }
 
     .div-description {
-        height: 100px;
+        height: 90px;
+        width:300px;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 
     .div-basic-info {
@@ -56,7 +59,23 @@
                         <h2 class="pt-2">@item.Provincia</h2>
                     </div>
                     <div class="col div-description border-top">
-                        <p class="pt-1">@item.Descripcion</p>
+                        @{
+                            if (item != null)
+                            {
+                                var des = item.Descripcion.Length;
+                                if (des > 150)
+                                {
+                                    string cortar = item.Descripcion.Remove(120);
+                                    <p class="pt-1 mb-0">@((MarkupString)cortar)...</p>
+                                    <a href="#">Ver mas</a>
+                                }
+                                else
+                                {
+                                    <p class="pt-1">@((MarkupString)item.Descripcion)</p>
+                                }
+                            }
+                        }
+
                     </div>
                     <div class="col div-basic-info border-top">
                         <label style="text-align:center" class="pt-1">Tipo de contrato</label>

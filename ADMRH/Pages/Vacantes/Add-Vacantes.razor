@@ -69,14 +69,24 @@
                         <div class="col">
                             <div class="form-group">
                                 <label>Salario</label>
-                                <InputText class="form-control" @bind-Value="vacante.Salario" />
+                                <RadzenMask Mask="********"
+                                            CharacterPattern="[0-9]"
+                                            Placeholder="Salario del puesto..."
+                                            Name="CitizenId" @bind-Value=@vacante.Salario
+                                            Style="width: 100%;"/>
+                                @*<InputText class="form-control" @bind-Value="vacante.Salario" />*@
                                 <ValidationMessage For=@(() => vacante.Salario) />
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label>Estado del puesto</label>
-                                <InputText class="form-control" @bind-Value="vacante.EstadoPuesto" />
+                                <label>Tipo de contrato</label>
+                                <InputSelect class="form-control" @bind-Value="vacante.EstadoPuesto">
+                                    <option value="" disabled selected>Selecione el tipo de contrato...</option>
+                                    <option value="Fijo">Fijo</option>
+                                    <option value="Definido">Definido</option>
+                                    <option value="No definido">No definido</option>
+                                </InputSelect>
                                 <ValidationMessage For=@(() => vacante.EstadoPuesto) />
                             </div>
                         </div>

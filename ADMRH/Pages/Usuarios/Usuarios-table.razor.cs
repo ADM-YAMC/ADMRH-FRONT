@@ -11,6 +11,7 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using ADMRH.Herpers;
 using System.Drawing;
+using ADMRH.Models;
 
 namespace ADMRH.Pages.Usuarios
 {
@@ -24,11 +25,15 @@ namespace ADMRH.Pages.Usuarios
         [Parameter]
         public string IdUsuario { get; set; } = "0";
         public bool loading { get; set; } = false;
+        UserClaims userClaims;
         protected override async Task OnInitializedAsync()
         {
             loading = true;
             if (IdUsuario != "0")
             {
+               
+
+
                 usuarios = await http.GetFromJsonAsync<List<Usuario>>($"https://localhost:44322/api/Usuarios/creacion/{Convert.ToInt32(IdUsuario)}");
                 if (usuarios != null)
                 {
@@ -43,6 +48,7 @@ namespace ADMRH.Pages.Usuarios
                     loading = false;
                 }
             }
+            userClaims = await localStorageService.GetItemAsync<UserClaims>("user");
 
         }
         async Task ExportarCSV()
