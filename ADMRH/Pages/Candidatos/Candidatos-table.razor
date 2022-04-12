@@ -2,11 +2,16 @@
 @inject SweetAlertService Swal;
 @inject NavigationManager Navigate
 @inject ILocalStorageService localStorageService
-
+@inject IJSRuntime Js
 @if (candidatos != null)
 {
     if (candidatos.Count != 0)
     {
+          <div class="row">
+            <div class="col mb-3">
+                <button class="btn btn-primary float-right" @onclick="ExportarCSV">Exportar <i class="fas fa-file-excel"></i></button>
+            </div>
+        </div>
         <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="5" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
                         Data="@candidatos" TItem="Candidato" @ref="@radzenDataGrid" ColumnWidth="300px" LogicalFilterOperator="LogicalFilterOperator.Or">
             <Columns>

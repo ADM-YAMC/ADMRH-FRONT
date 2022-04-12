@@ -39,13 +39,8 @@ namespace ADMRH.Pages.Candidatos
                 IdVacante = candidate.IdVacante;
                 responseAll = await http.GetFromJsonAsync<Response>($"https://localhost:44322/api/Vacantes");
                 StateHasChanged();
-                if (candidate.IdArchivos != 0)
+                if (responseC != null)
                 {
-                    archivo = await http.GetFromJsonAsync<Archivo>($"https://localhost:44322/api/Archivos/{candidate.IdArchivos}");
-                    await GetVacanteOfCandidate();
-                    StateHasChanged();
-
-                }
                 if (!responseC.ok)
                 {
                     await Swal.FireAsync("Oops...", $"{responseC.message}", "error");
@@ -54,7 +49,12 @@ namespace ADMRH.Pages.Candidatos
                 else
                 {
                     candidate = responseC.candidatos;
+                    archivo = await http.GetFromJsonAsync<Archivo>($"https://localhost:44322/api/Archivos/{responseC.candidatos.IdArchivos}");
+                    await GetVacanteOfCandidate();
+                    StateHasChanged();
+                    }
                 }
+               
             }
             catch (Exception)
             {

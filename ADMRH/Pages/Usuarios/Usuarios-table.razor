@@ -3,18 +3,17 @@
 @inject SweetAlertService Swal;
 @inject IJSRuntime Js
 @using ADMRH.Pages.Loadings
-<div class="row">
-    <div class="col">
-        <h2>Usuarios</h2>
-    </div>
-    <div class="col mb-3">
-        <button class="btn btn-success float-right" @onclick="ExportarCSV">Exportar <i class="fas fa-file-excel"></i></button>
-    </div>
-</div>
+
+
 @if (usuarios != null)
 {
     if (usuarios.Count != 0)
     {
+         <div class="row">
+            <div class="col mb-3">
+                <button class="btn btn-success float-right" @onclick="ExportarCSV">Exportar <i class="fas fa-file-excel"></i></button>
+            </div>
+        </div>
         <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="5" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
                         Data="@usuarios" @ref="grid" TItem="Usuario" ColumnWidth="300px" LogicalFilterOperator="LogicalFilterOperator.Or">
             <Columns>

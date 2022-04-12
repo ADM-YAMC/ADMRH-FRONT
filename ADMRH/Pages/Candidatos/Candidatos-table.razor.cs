@@ -9,6 +9,7 @@ using Radzen.Blazor;
 using static ADMRH.Pages.Candidatos.RegistroCandidato;
 using ADMRH.Herpers;
 using ADMRH.Models;
+using OfficeOpenXml;
 
 namespace ADMRH.Pages.Candidatos
 {
@@ -62,26 +63,21 @@ namespace ADMRH.Pages.Candidatos
         }
 
       
-        //public async Task<bool> IsAutorized()
-        //{
-        //    try
-        //    {
-        //        userClaims = await localStorageService.GetItemAsync<UserClaims>("user");
-        //        Console.WriteLine(userClaims.Rol);
-        //        if (userClaims?.Rol == "Administrador")
-        //        {
-        //            return true;
-        //        }
-        //        else
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return true;
-        //    }
+        async Task ExportarCSV()
+        {
+            var fecha = DateTime.Now.ToString("dd/MM/yyyy");
 
-        //}
+            using (var package = new ExcelPackage())
+            {
+                var wordsheet = package.Workbook.Worksheets.Add("candidatos");
+                var tablebody = wordsheet.Cells["A1:A1"].LoadFromCollection(
+                    from f in candidatos
+                    select new { f.Nombre, f.Apellido, f.Cedula, f.Correo, f.Telefono, f.FechaCreacion , f.Direccion, }, true
+                    );
+                var header = wordsheet.Cells["A1:H1"];
+                wordsheet.DefaultColWidth = 30;
+                await Js.GuardarComo($"candidatos_{fecha}.xlsx", package.GetAsByteArray());
+            }
+        }
     }
 }

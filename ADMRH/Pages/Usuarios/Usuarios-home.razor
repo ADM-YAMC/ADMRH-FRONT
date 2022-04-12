@@ -3,6 +3,14 @@
 @inject ILocalStorageService localStorageService
 <div class="container-xl mt-5">
     <RadzenCard>
+        <div class="row">
+            <div class="col">
+                <h2>Usuarios</h2>
+            </div>
+            <div class="col mb-3">
+                <a href="usuarios/nuevo-usuario" class="btn btn-success float-right">Nuevo usuario</a>
+            </div>
+        </div>
         <div class="row border-top">
             <div class="col mt-2 pt-3">
                 <Usuarios_table />

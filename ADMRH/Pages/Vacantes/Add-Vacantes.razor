@@ -7,8 +7,8 @@
 @inject ILocalStorageService localStorageService
 
 <div class="container-lg mt-5">
-    <RadzenCard>
-        <h1>Registro de vacantes</h1>
+    <RadzenCard Style="border-left: 4px solid #023877">
+        <h1>@(IdVacante !=0 ? "Actualizar vacante":"Registro de vacantes")</h1>
         <EditForm Model="vacante" OnValidSubmit="GuardarEditarVacantes">
             <DataAnnotationsValidator />
             <div class="row border-top">
@@ -229,8 +229,6 @@
             {
                 await Swal.FireAsync("Oops...", $"{response.mensaje}", "error");
             }
-
-
         }
     }
 
